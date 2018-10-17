@@ -5,22 +5,25 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
+            android:id="@+id/nav_login"
+            android:icon="@android:drawable/ic_input_add"
             android:title="Login" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
+            android:id="@+id/nav_classes"
+            android:icon="@drawable/ic_library_books_black_24dp"
             android:title="Classes" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:id="@+id/nav_calendar"
+            android:icon="@drawable/ic_date_range_black_24dp"
             android:title="Calendar" />
         <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
+            android:id="@+id/nav_comingup"
+            android:icon="@drawable/ic_arrow_forward_black_24dp"
             android:title="Coming Up" />
-        <item android:title="Map" />
+        <item
+            android:id="@+id/nav_map"
+            android:icon="@android:drawable/ic_dialog_map"
+            android:title="Map" />
     </group>
 
 </menu>

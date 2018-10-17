@@ -18,10 +18,12 @@ class PolyData {
         val cookieManager = CookieManager()
         CookieHandler.setDefault(cookieManager)
 
-        val req = StringRequest(Request.Method.GET, Urls.LOGIN1,
-            Response.Listener<String> {
-        })
-
-        queue.add(req)
+//        val req = StringRequest(Request.Method.GET, Urls.LOGIN1,
+//            Response.Listener<String> {
+//        })
+//
+//        queue.add(req)
     }
 }
+
+data class PolyClass(val short_name: String, val full_name: String, val location: String)

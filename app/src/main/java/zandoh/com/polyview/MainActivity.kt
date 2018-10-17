@@ -15,14 +15,15 @@ import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import kotlinx.android.synthetic.main.nav_header_main.*
 import kotlinx.android.synthetic.main.nav_header_main.view.*
+import android.content.Intent
+import android.support.v4.app.Fragment
+
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
-
-        val prefs = getSharedPreferences("polyview", Context.MODE_PRIVATE)
 
         val toggle = ActionBarDrawerToggle(
                 this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
@@ -31,15 +32,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         nav_view.setNavigationItemSelectedListener(this)
 
-        // Setup login listener
-        login_button.setOnClickListener {
-            val editor = prefs.edit()
-            editor.putString("email", email.text.toString())
-            editor.putString("password", password.text.toString())
-        }
-    }
-
-    fun polyLogin() {
+        supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment, CalendarActivity())
+                .commit()
 
     }
 
@@ -69,11 +64,29 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle navigation view item clicks here.
+        var newFragment: Fragment? = null
+
         when (item.itemId) {
-            R.id.nav_camera -> {
-                // Handle the camera action
+            R.id.nav_login -> {
+                newFragment = LoginActivity()
+            }
+            R.id.nav_classes -> {
+                newFragment = ClassesActivity()
+            }
+            R.id.nav_calendar -> {
+                newFragment = CalendarActivity()
+            }
+            R.id.nav_comingup -> {
+
+            }
+            R.id.nav_map -> {
+
             }
         }
+
+        supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment, newFragment!!)
+                .commit()
 
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
