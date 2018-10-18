@@ -27,3 +27,5 @@ class PolyData {
 }
 
 data class PolyClass(val short_name: String, val full_name: String, val location: String)
+
+data class PolyAssignment(val assignment_name: String, val assignment_due: String, val submitted: Boolean)

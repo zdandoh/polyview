@@ -26,6 +26,8 @@
                 android:layout_height="wrap_content" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/textView2"
                 android:layout_width="50sp"
                 android:layout_height="wrap_content"
@@ -34,6 +36,8 @@
                 android:text="Monday" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/textView3"
                 android:layout_width="50sp"
                 android:layout_height="wrap_content"
@@ -42,6 +46,8 @@
                 android:text="Tuesday" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/textView4"
                 android:layout_width="50sp"
                 android:layout_height="wrap_content"
@@ -50,6 +56,8 @@
                 android:text="Weds" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/textView5"
                 android:layout_width="50sp"
                 android:layout_height="wrap_content"
@@ -58,6 +66,8 @@
                 android:text="Thursday" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/textView6"
                 android:layout_width="50sp"
                 android:layout_height="wrap_content"
@@ -78,6 +88,8 @@
             android:layout_weight="15">
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/textView7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -86,30 +98,40 @@
                 android:text="7 AM" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-1-1"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-2-1"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-3-1"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-4-1"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-5-1"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -129,6 +151,8 @@
             android:layout_weight="15">
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/textView21"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -137,30 +161,40 @@
                 android:text="8 AM" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-1-2"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-2-2"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-3-2"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-4-2"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-5-2"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -179,6 +213,8 @@
             android:layout_weight="15">
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/textView22"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -187,30 +223,40 @@
                 android:text="9 AM" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-1-3"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-2-3"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-3-3"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-4-3"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-5-3"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -229,6 +275,8 @@
             android:layout_weight="15">
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/textView23"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -237,30 +285,40 @@
                 android:text="10 AM" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-1-4"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-2-4"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-3-4"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-4-4"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-5-4"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -279,6 +337,8 @@
             android:layout_weight="15">
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/textView24"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -287,30 +347,40 @@
                 android:text="11 AM" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-1-5"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-2-5"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-3-5"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-4-5"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-5-5"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -329,6 +399,8 @@
             android:layout_weight="15">
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/textView25"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -337,30 +409,40 @@
                 android:text="12 PM" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-1-6"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-2-6"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-3-6"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-4-6"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-5-6"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -379,6 +461,8 @@
             android:layout_weight="15">
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/textView26"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -387,30 +471,40 @@
                 android:text="1 PM" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-1-7"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-2-7"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-3-7"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-4-7"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-5-7"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -429,6 +523,8 @@
             android:layout_weight="15">
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/textView27"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -437,30 +533,40 @@
                 android:text="2 PM" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-1-8"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-2-8"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-3-8"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-4-8"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-5-8"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -479,6 +585,8 @@
             android:layout_weight="15">
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/textView28"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -487,30 +595,40 @@
                 android:text="3 PM" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-1-9"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-2-9"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-3-9"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-4-9"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-5-9"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -529,6 +647,8 @@
             android:layout_weight="15">
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/textView29"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -537,30 +657,40 @@
                 android:text="4 PM" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-1-10"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-2-10"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-3-10"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-4-10"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-5-10"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -579,6 +709,8 @@
             android:layout_weight="15">
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/textView30"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -587,30 +719,40 @@
                 android:text="5 PM" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-1-11"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-2-11"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-3-11"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-4-11"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-5-11"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -629,6 +771,8 @@
             android:layout_weight="15">
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/textView31"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -637,30 +781,40 @@
                 android:text="6 PM" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-1-12"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-2-12"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-3-12"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-4-12"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-5-12"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -679,6 +833,8 @@
             android:layout_weight="15">
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/textView32"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -687,30 +843,40 @@
                 android:text="7 PM" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-1-13"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-2-13"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-3-13"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-4-13"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-5-13"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -729,6 +895,8 @@
             android:layout_weight="15">
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/textView33"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -737,30 +905,40 @@
                 android:text="8 PM" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-1-14"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-2-14"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-3-14"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-4-14"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-5-14"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -779,6 +957,8 @@
             android:layout_weight="15">
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/textView34"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -787,30 +967,40 @@
                 android:text="9 PM" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-1-15"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-2-15"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-3-15"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-4-15"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-5-15"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -829,38 +1019,50 @@
             android:layout_weight="15">
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/textView35"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="3dp"
                 android:layout_marginRight="2dp"
-                android:text="9 PM" />
+                android:text="10 PM" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-1-16"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-2-16"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-3-16"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-4-16"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
 
             <TextView
+                android:maxLines="4"
+                android:singleLine="false"
                 android:id="@+id/cal-cell-5-16"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
