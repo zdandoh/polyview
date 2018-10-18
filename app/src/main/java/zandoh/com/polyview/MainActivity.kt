@@ -77,7 +77,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 newFragment = CalendarActivity()
             }
             R.id.nav_comingup -> {
-
+                newFragment = ComingUpActivity()
             }
             R.id.nav_map -> {
 
