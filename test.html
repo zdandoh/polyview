@@ -1,0 +1,891 @@
+2018-11-14 23:09:17.175 2234-2253/zandoh.com.polyview D/MYAPP: https://idp.calpoly.edu/idp/profile/cas/login?execution=e1s1
+2018-11-14 23:09:18.361 2234-2258/zandoh.com.polyview D/MYAPP: <!DOCTYPE html><html lang="en-US"><head><title>My Cal Poly Portal: Home</title><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="description" content="uPortal by Jasig: The academic open source portal built for higher education by higher education"/><meta name="keywords" content="portal, uPortal, academic, higher education, open source, enterprise, JA-SIG, JASIG, Jasig"/><link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/><link href="https://webresource.its.calpoly.edu/dojo/build/1.9.10/4/dijit/themes/claro/claro.css" rel="stylesheet" type="text/css"/><link href="https://webresource.its.calpoly.edu/dojo/build/1.9.10/4/dojox/grid/resources/claroGrid.css" rel="stylesheet" type="text/css"/><link href="https://webresource.its.calpoly.edu/dojo/build/1.9.10/4/dojox/grid/enhanced/resources/claro/EnhancedGrid.css" rel="stylesheet" type="text/css"/><link href="https://webresource.its.calpoly.edu/dojo/build/1.9.10/4/dojox/calendar/themes/clar
+2018-11-14 23:09:18.361 2234-2258/zandoh.com.polyview D/MYAPP: o/Calendar.css" rel="stylesheet" type="text/css"/><link href="https://webresource.its.calpoly.edu/dojo/build/1.9.10/4/dojox/calendar/themes/claro/SimpleColumnView.css" rel="stylesheet" type="text/css"/><link href="/ResourceServingWebapp/rs/fluid/1.4.0/fss/css/fss-framework-1.4.0.min.css" rel="stylesheet" type="text/css"/><link href="/ResourceServingWebapp/rs/jqueryui/1.8.13/theme/smoothness/jquery-ui-1.8.13-smoothness.min.css" rel="stylesheet" type="text/css"/><link href="/media/skins/universality/common/css/aOTEcnHm6PTmgVgk0Y5LCQ.aggr.min.css" rel="stylesheet" type="text/css"/><link href="/media/skins/universality/wintergreen/WKr67-LDGR_HWuhVAUJ8Dw.aggr.min.css" rel="stylesheet" type="text/css"/><script src="/ResourceServingWebapp/rs/jquery/1.6.4/jquery-1.6.4.min.js" type="text/javascript"> </script><script src="/ResourceServingWebapp/rs/jquery-plugins/form/3.18/jquery.form-3.18.min.js" type="text/javascript"> </script><script src="/ResourceServingWebapp/rs/jquery-plugins/validation/1
+2018-11-14 23:09:18.361 2234-2258/zandoh.com.polyview D/MYAPP: .10.0/jquery.validate-1.10.0.min.js" type="text/javascript"> </script><script src="/ResourceServingWebapp/rs/jquery-plugins/validation/1.10.0/additional-methods-1.10.0.min.js" type="text/javascript"> </script><script src="/ResourceServingWebapp/rs/jquery-plugins/cookie/1.0/jquery.cookie-1.0.min.js" type="text/javascript"> </script><script src="/ResourceServingWebapp/rs/jqueryui/1.8.13/jquery-ui-1.8.13.min.js" type="text/javascript"> </script><script src="/ResourceServingWebapp/rs/underscore/1.3.3/underscore-1.3.3.min.js" type="text/javascript"> </script><script src="/ResourceServingWebapp/rs/backbone/0.9.9/backbone-0.9.9.min.js" type="text/javascript"> </script><script src="/ResourceServingWebapp/rs/fluid/1.4.0/js/fluid-all-1.4.0.min.js" type="text/javascript"> </script><script src="/media/skins/universality/common/javascript/ugO56jlK_dTpmhUjD6JS8A.aggr.min.js" type="text/javascript"> </script><script type="text/javascript">
+                var up = up || {};
+                up.jQuery = jQuery
+2018-11-14 23:09:18.361 2234-2258/zandoh.com.polyview D/MYAPP: .noConflict(true);
+                up.fluid = fluid;
+                up._ = _.noConflict();
+                up._.templateSettings = {
+                  interpolate : /{{=(.+?)}}/g,
+                  evaluate    : /{{(.+?)}}/g
+                };
+                up.Backbone = Backbone.noConflict();
+                fluid = null;
+                fluid_1_4 = null;
+                window.cp = window.cp || {};
+                cp.isMobile = false;
+                cp.webResourceUrl = 'https://webresource.its.calpoly.edu';
+            </script><script>
+          dojoConfig= {
+            baseUrl:"https://webresource.its.calpoly.edu/dojo/build/1.9.10/4/dojo",
+            isDebug: false,
+            async: true,
+            tlmSiblingOfDojo: false,
+            packages:[
+            {name:"NotificationsPortlet", location:'https://webresource.its.calpoly.edu/v2/notifications/20/js'}
+            ],
+            portal:{
+              iconsPath:"https://webresource.its.calpoly.edu/portal-icons/sage/"
+            }
+          };
+          </script><script src="https://webresource.its.calpoly.edu/dojo/build/1.9.10/4/calpoly/PortalDojo.js" type="text/javas
+2018-11-14 23:09:18.361 2234-2258/zandoh.com.polyview D/MYAPP: cript"></script><script src="https://webresource.its.calpoly.edu/v2/singleclick/110/js/track.js" type="text/javascript"></script><script src="https://webresource.its.calpoly.edu/v2/singleclick/110/js/sidelinks.js" type="text/javascript"></script><script src="https://webresource.its.calpoly.edu/v2/notifications/20/js/portal-header-notifications.js" type="text/javascript"></script><script type="text/javascript" src="/js/nr-browser-agent.js"></script></head><body id="portal" class="up  claro"><div id="portalPage" class="logged-in dashboard fl-container-flex"><div id="portalPageInner" class="layout-2-columns  "><div id="headArea"><div id="portalPageHeader" class="fl-container-flex"><div id="portalPageHeaderInner"><div id="portalSkipNav"><a href="#portalNavigation" title="Skip to page navigation" id="skipToNav" accesskey="N">Skip to page navigation</a><a href="#portalPageBody" title="Skip to page content" id="skipToContent" accesskey="C">Skip to page content</a></div><div id="logoContainer"
+2018-11-14 23:09:18.361 2234-2258/zandoh.com.polyview D/MYAPP: ><div id="portalLogo"><a href="http://www.calpoly.edu" title="Go to Home"><img src="/media/skins/universality/wintergreen/images/cp_shield_wordmark.png" alt="Cal Poly, San Luis Obispo" title="Go to Cal Poly Home"/></a></div><div id="portalLogoText"><a href="/f/u17l1s6/normal/render.uP" title="Go to Home">
+               My Portal
+             </a></div></div><div id="portalPageBar"><div id="portalPageBarLinks"><div id="portalHeaderUtilities"><div id="portalHeaderUtilitiesTop"><div id="portalWelcome">Welcome
+             <span class="user-name">Daniel Dohnalek</span></div><i>|</i><a id="logoutLink" href="/Logout" title="Log off and exit the portal"><span>Sign Out</span></a></div><div id="portalHeaderUtilitiesBottom"><div id="webSearchContainer" class="fl-widget"><form method="post" action="/p/search.ctf1/max/action.uP" id="webSearchForm"><input id="webSearchInput" value="" name="query" type="text" maxlength="255" alt="Search Text" title="Search the Portal"/><input id="webSearchSubmit" type="submit"
+2018-11-14 23:09:18.361 2234-2258/zandoh.com.polyview D/MYAPP:  name="submit" alt="Search" title="Submit Search Query" value="Search"/></form></div></div></div></div></div><div id="portalHeaderBlock"></div></div></div><div id="portalNavigation"><div id="portalNavigationInner" class="header"><ul id="portalNavigationList" class="fl-tabs flc-reorderer-column"><li class="portal-navigation-add-item"><a href="javascript:;" title="Add Tab" class="portal-navigation-add">Add Tab</a></li><li id="portalNavigation_u17l1s6" class="portal-navigation first active fl-tabs-active movable editable  canAddChildren"><a id="tabLink_u17l1s6" href="/f/u17l1s6/normal/render.uP" title="Home" class="portal-navigation-link flc-inlineEditable"><span title="Click to edit tab name" class="portal-navigation-label flc-inlineEdit-text">Home</span></a><a href="javascript:;" class="portal-navigation-gripper active fl-tabs-active" title="Move this tab"><span>Move</span></a></li><li id="portalNavigation_u21l1s5" class="portal-navigation   movable editable  canAddChildren"><a id="tabL
+2018-11-14 23:09:18.361 2234-2258/zandoh.com.polyview D/MYAPP: ink_u21l1s5" href="/f/u21l1s5/normal/render.uP" title="Academics" class="portal-navigation-link "><span title="" class="portal-navigation-label ">Academics</span></a><a href="javascript:;" class="portal-navigation-gripper " title="Move this tab"><span>Move</span></a></li><li id="portalNavigation_u40l1s6" class="portal-navigation   movable   "><a id="tabLink_u40l1s6" href="/f/u40l1s6/normal/render.uP" title="Money Matters" class="portal-navigation-link "><span title="" class="portal-navigation-label ">Money Matters</span></a><a href="javascript:;" class="portal-navigation-gripper " title="Move this tab"><span>Move</span></a></li><li id="portalNavigation_u14l1s6" class="portal-navigation   movable editable  canAddChildren"><a id="tabLink_u14l1s6" href="/f/u14l1s6/normal/render.uP" title="Personal Info" class="portal-navigation-link "><span title="" class="portal-navigation-label ">Personal Info</span></a><a href="javascript:;" class="portal-navigation-gripper " title="Move this tab"><spa
+2018-11-14 23:09:18.361 2234-2258/zandoh.com.polyview D/MYAPP: n>Move</span></a></li><li id="portalNavigation_u19l1s5" class="portal-navigation   movable   "><a id="tabLink_u19l1s5" href="/f/u19l1s5/normal/render.uP" title="Library" class="portal-navigation-link "><span title="" class="portal-navigation-label ">Library</span></a><a href="javascript:;" class="portal-navigation-gripper " title="Move this tab"><span>Move</span></a></li><li id="portalNavigation_u27l1s5" class="portal-navigation   movable editable deletable canAddChildren"><a id="tabLink_u27l1s5" href="/f/u27l1s5/normal/render.uP" title="ASI" class="portal-navigation-link "><span title="" class="portal-navigation-label ">ASI</span></a><a href="javascript:;" class="portal-navigation-gripper " title="Move this tab"><span>Move</span></a></li><li id="portalNavigation_s21" class="portal-navigation last  movable editable deletable canAddChildren"><a id="tabLink_s21" href="/f/s21/normal/render.uP" title="Account" class="portal-navigation-link "><span title="" class="portal-navigation-label ">
+2018-11-14 23:09:18.361 2234-2258/zandoh.com.polyview D/MYAPP: Account</span></a><a href="javascript:;" class="portal-navigation-gripper " title="Move this tab"><span>Move</span></a></li></ul></div></div><script type="text/javascript">
+          up.jQuery(".portal-navigation").click(function(event){
+            if (typeof newrelic == 'object') {
+              var tabId = event.currentTarget.id;
+              var tabName = event.target.innerText;
+              var idArr = tabId.split("portalNavigation_");
+              var type = "Unknown";
+    
+              if (idArr.length > 1){
+                // Default portal tab IDs look like: portalNavigation_u18l1s6, custom: portalNavigation_s21
+                type = idArr[1].charAt(0) === 'u' ? "Default" : "Custom"
+              }
+              newrelic.addPageAction('clicked_portal_tab', {title: tabName, type: type});
+            }
+          });
+        </script></div><div class="up-gallery"><h2 class="handle"><a class="button"><span class="handle-arrow-down">Customize</span></a></h2><div class="fl-fix fl-col-mixed fl-col-mixed2 gallery-inner" style="display:non
+2018-11-14 23:09:18.361 2234-2258/zandoh.com.polyview D/MYAPP: e"><div class="fl-col-side fl-force-left menu-wrapper"><ul class="menu" role="menu"><li class="add-content-link active" role="tab"><a href="javascript:;"><span>Add Portlets</span></a></li><li class="use-content-link" role="tab"><a href="javascript:;"><span>Use Now!</span></a></li><li class="skin-link" role="tab"><a href="javascript:;"><span>Colors</span></a></li><li class="layout-link last" role="tab"><a href="javascript:;"><span>Layouts</span></a></li></ul><div class="close-button"><a class="button"><span>I'm Done</span></a></div></div><div class="fl-col-main content-wrapper" role="tabpanel"><div class="fl-fix content"><div class="fl-fix fl-col-mixed fl-col-mixed2 pane add-content"><div class="fl-col-fixed fl-force-left content-filters-wrapper"><div class="categories-column active"><h3 class="portlet-list-link"><span>Portlets</span></h3><div class="categories-wrapper active"><div class="portlet-search-view"><form class="portlet-search-form"><label for="portletSearch">Search for Portle
+2018-11-14 23:09:18.361 2234-2258/zandoh.com.polyview D/MYAPP: ts to add</label><input id="portletSearch" name="portletSearch" class="portlet-search-input" type="text" value="Search"/><input type="submit" value="Search" class="portlet-search-submit"/></form></div><div class="categories"><h4>Categories</h4><div class="category-choice-container"><ul><li class="category-choice"><a href="javascript:;" class="category-choice-link"><span class="category-choice-name"></span></a></li></ul></div><div class="clear-float"></div></div></div></div><div class="packages-column"><h3 class="package-list-link"><span>Tab Packages</span></h3><div class="packages-wrapper"><div class="packages"><p>Adding a package creates a new tab and puts the packaged portlets on it</p></div></div></div></div><div class="content-results-wrapper fl-col-main"><div class="column-inner"><div class="results-wrapper fl-col-mixed2"><div class="pager-column fl-col-side fl-force-right"><div class="column-inner"></div></div><div class="results-column fl-col-main fl-fix"><div class="results-wra
+2018-11-14 23:09:18.361 2234-2258/zandoh.com.polyview D/MYAPP: pper portlet-results fl-col-mixed2"><div class="pager-column fl-col-side fl-force-right"><div class="column-inner"><div class="pager flc-pager-top"><div class="pager-button-up flc-pager-previous"><a class="pager-button-up-inner" href="javascript:;"><span>Up</span></a></div><div style="display:none"><ul class="fl-pager-links flc-pager-links" style="margin:0; display:inline"><li class="flc-pager-pageLink"><a href="javascript:;">1</a></li><li class="flc-pager-pageLink-disabled">2</li><li class="flc-pager-pageLink"><a href="javascript:;">3</a></li></ul></div><div class="pager-pagination"></div><div style="display:none"><span class="flc-pager-summary">Show</span><span><select class="pager-page-size flc-pager-page-size"></select></span></div><div class="pager-button-down flc-pager-next"><a class="pager-button-down-inner" href="javascript:;"><span>Down</span></a></div></div></div></div><div class="results-column fl-col-main ui-helper-clearfix"><ul id="addContentPortletList" class="results-lis
+2018-11-14 23:09:18.361 2234-2258/zandoh.com.polyview D/MYAPP: t portlet-list"><li class="result-item portlet"><div class="ri-wrapper portlet-wrapper"><a class="ri-utility portlet-thumb-gripper" href="javascript:;" title="Drag to add content"><span>Drag Handle</span></a><a href="javascript:;" class="ri-link portlet-thumb-link"><span>Add</span></a><div class="ri-content portlet-thumb-content ui-helper-clearfix"><div class="ri-titlebar portlet-thumb-titlebar"></div><div class="ri-icon portlet-thumb-icon"><span>Thumbnail</span></div><div class="ri-description portlet-thumb-description">Description</div></div></div></li></ul></div></div><div class="results-wrapper package-results fl-col-mixed2" style="display:none"><div class="pager-column fl-col-side fl-force-right"><div class="column-inner"><div class="pager flc-pager-top"><div class="pager-button-up flc-pager-previous"><a class="pager-button-up-inner" href="javascript:;"><span>Up</span></a></div><div style="display:none"><ul class="fl-pager-links flc-pager-links" style="margin:0; display:inline"><l
+2018-11-14 23:09:18.361 2234-2258/zandoh.com.polyview D/MYAPP: i class="flc-pager-pageLink"><a href="javascript:;">1</a></li><li class="flc-pager-pageLink-disabled">2</li><li class="flc-pager-pageLink"><a href="javascript:;">3</a></li></ul></div><div class="pager-pagination"></div><div style="display:none"><span class="flc-pager-summary">Show</span><span><select class="pager-page-size flc-pager-page-size"></select></span></div><div class="pager-button-down flc-pager-next"><a class="pager-button-down-inner" href="javascript:;"><span>Down</span></a></div></div></div></div><div class="results-column fl-col-main"><ul class="results-list package-list ui-helper-clearfix"><li class="results-item package"><div class="ri-wrapper package-wrapper"><div class="ri-utility"></div><a href="javascript:;" class="ri-link package-link"><span>Subscribe</span></a><div class="ri-content package-content ui-helper-clearfix"><div class="ri-titlebar package-titlebar">Titlebar</div><div class="ri-icon package-icon"><span>Thumbnail</span></div><div class="ri-description pack
+2018-11-14 23:09:18.361 2234-2258/zandoh.com.polyview D/MYAPP: age-description">Description</div></div></div></li></ul></div></div></div><div class="clear-float"></div></div></div></div><div class="content-modal content-loading"></div></div><div class="fl-fix fl-col-mixed fl-col-mixed2 use-content" style="display:none"><div class="fl-col-fixed fl-force-left content-filters-wrapper"><div class="categories-column active"><h3 class="portlet-list-link"><span>Portlets</span></h3><div class="categories-wrapper active"><div class="portlet-search-view"><form class="portlet-search-form"><div class="search"><input class="portlet-search-input" type="text"/></div></form></div><div class="categories"><h4>Categories</h4><div class="category-choice-container"><ul><li class="category-choice"><a href="javascript:;" class="category-choice-link"><span class="category-choice-name"></span></a></li></ul></div><div class="clear-float"></div></div></div></div></div><div class="content-results-wrapper fl-col-main"><div class="column-inner"><div class="results-wrapper fl-c
+2018-11-14 23:09:18.361 2234-2258/zandoh.com.polyview D/MYAPP: ol-mixed2"><div class="pager-column fl-col-side fl-force-right"><div class="column-inner"></div></div><div class="results-column fl-col-main fl-fix"><div class="results-wrapper portlet-results fl-col-mixed2"><div class="pager-column fl-col-side fl-force-right"><div class="column-inner"><div class="pager flc-pager-top"><div class="pager-button-up flc-pager-previous"><a class="pager-button-up-inner" href="javascript:;"><span>Up</span></a></div><div style="display:none"><ul class="fl-pager-links flc-pager-links" style="margin:0; display:inline"><li class="flc-pager-pageLink"><a href="javascript:;">1</a></li><li class="flc-pager-pageLink-disabled">2</li><li class="flc-pager-pageLink"><a href="javascript:;">3</a></li></ul></div><div class="pager-pagination"></div><div style="display:none"><span class="flc-pager-summary">Show</span><span><select class="pager-page-size flc-pager-page-size"></select></span></div><div class="pager-button-down flc-pager-next"><a class="pager-button-down-inner" h
+2018-11-14 23:09:18.361 2234-2258/zandoh.com.polyview D/MYAPP: ref="javascript:;"><span>Down</span></a></div></div></div></div><div class="results-column fl-col-main ui-helper-clearfix"><ul id="useContentPortletList" class="results-list portlet-list"><li class="result-item portlet"><div class="ri-wrapper portlet-wrapper"><div class="ri-utility"></div><a href="javascript:;" class="ri-link portlet-thumb-link"><span>Use</span></a><div class="ri-content portlet-thumb-content ui-helper-clearfix"><div class="ri-titlebar portlet-thumb-titlebar"></div><div class="ri-icon portlet-thumb-icon"><span>Thumbnail</span></div><div class="ri-description portlet-thumb-description">Description</div></div></div></li></ul></div></div></div><div class="clear-float"></div></div></div></div></div><div class="skins" style="display:none"><div class="content-results-wrapper"><div class="column-inner"><div class="results-wrapper"><ul class="results-list skins-list"><li class="results-item skin"><div class="ri-wrapper skins-wrapper"><a class="ri-link skin-link" href="javascri
+2018-11-14 23:09:18.361 2234-2258/zandoh.com.polyview D/MYAPP: pt:;"><div class="ri-titlebar skin-titlebar"></div><div class="ri-content"><div class="ri-icon skin-thumb"><span>Thumbnail</span></div></div></a></div></li></ul></div></div></div></div><div class="layouts" style="display:none"><div class="content-results-wrapper"><div class="column-inner"><div class="results-wrapper"><ul class="results-list layouts-list"><li class="results-item layout"><div class="ri-wrapper layout-wrapper"><a class="ri-link layout-link" href="javascript:;"><div class="ri-titlebar layout-titlebar"></div><div class="ri-content"><div class="ri-icon layout-thumb"><span>Thumbnail</span></div><div class="ri-description layout-description"></div></div></a></div></li></ul></div></div></div></div></div></div><div id="galleryLoader" class="gallery-loader"><span>Loading</span></div></div></div><div id="portalPageBody" class="fl-container-flex fl-fix"><div id="portalPageBodyInner"><div id="portalPageBodyLayout" class="fl-container-flex"><div id="portalPageBodyMessage"></div><div 
+2018-11-14 23:09:18.361 2234-2258/zandoh.com.polyview D/MYAPP: id="portalContentTopBlock"></div><div id="portalPageBodyTitleRow"><div id="portalPageBodyTitleRowContents"></div></div><div id="portalPageBodyColumns" class=" &#xa;    &#x9;&#x9;columns-2"><div id="column_u17l1s9" class="portal-page-column  &#xa;        &#x9;column-1 fl-container-flex60 movable  editable canAddChildren" style="clear: none;"><div id="inner-column_u17l1s9" class="portal-page-column-inner"><div id="portlet_u17l1n1693" class="fl-widget up-portlet-wrapper PolyPlannerStatusPortlet movable deletable   "><div class="up-portlet-wrapper-inner"><div class="up-portlet-wrapper-top"><div class="up-portlet-wrapper-top-inner"></div></div><div id="toolbar_u17l1n1693" class="fl-widget-titlebar up-portlet-titlebar"><a href="/f/u17l1s6/normal/render.uP?pCt=PolyPlannerStatusPortlet.u17l1n1693&amp;pCs=minimized&amp;pCp" title="Enter minimized mode for this portlet" class="up-portlet-control hide-content"><span class="icon"></span><span class="label">Minimize</span></a><h2><a id="u17l1n1693"
+2018-11-14 23:09:18.361 2234-2258/zandoh.com.polyview D/MYAPP:  href="/f/u17l1s6/p/PolyPlannerStatusPortlet.u17l1n1693/max/render.uP?pCp">
+                      PolyPlanner - Status Indicator
+                    </a></h2><div class="up-portlet-controls"><a title="Enter maximized mode for this portlet" href="/f/u17l1s6/p/PolyPlannerStatusPortlet.u17l1n1693/max/render.uP?pCp" class="up-portlet-control focus"><span class="icon"></span><span class="label">Maximize</span></a><a id="removePortlet_u17l1n1693" title="Are you sure you want to remove this portlet?" href="/f/u17l1s6/p/PolyPlannerStatusPortlet.u17l1n1693/normal/action.uP?u_remove_target=u17l1n1693" class="up-portlet-control remove"><span class="icon"></span><span class="label">Remove</span></a></div></div><div id="portletContent_u17l1n1693" class="fl-widget-content fl-fix up-portlet-content-wrapper"><div class="up-portlet-content-wrapper-inner"><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/PolyPlannerStatusPort
+2018-11-14 23:09:18.361 2234-2258/zandoh.com.polyview D/MYAPP: let//css/PolyPlannerStatusPortlet.css" type="text/css" />
+    <div class="PolyPlannerStatusPortlet">
+        <h3>
+            PolyPlanner Compliance Status - Winter Quarter 2019 Registration
+        </h3>
+        <br>
+        <table>
+            <tr>
+                <td><i class="fa fa-check"" ></i></td>
+                <td><strong> COMPLIANT</strong></td>
+            </tr>
+            <tr>
+                <td>
+                    <i class="fa fa-check"" ></i>
+                </td>
+                <td class="description">
+                    <span>Requirement 1: Login</span>
+                    <span>Required window: 04/12/2018 - 10/01/2018</span>
+                    <span><i>Last Login:</i> 11/12/2018</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <i class="fa fa-check" style="color: #036228; font-size: 1.8em;" ></i>
+                </td>
+                <td class="description">
+                    <span>Requirement 2: Planning</span>
+                    <span>Required terms: Fall 2018, Winter 2019, Spring 2019</span>
+                </t
+2018-11-14 23:09:18.361 2234-2258/zandoh.com.polyview D/MYAPP: d>
+            </tr>
+        </table>
+        <p>
+            * Above data refreshes nightly
+        </p>
+        <p>
+            <a target="_blank" href="http://www.registrar.calpoly.edu/polyplanner/faq">PolyPlanner FAQs</a>
+        </p>
+    </div>
+    </div></div><div class="up-portlet-wrapper-bottom"><div class="up-portlet-wrapper-bottom-inner"></div></div></div></div><div id="portlet_u17l1n1739" class="fl-widget up-portlet-wrapper directoryinfo movable deletable   "><div class="up-portlet-wrapper-inner"><div class="up-portlet-wrapper-top"><div class="up-portlet-wrapper-top-inner"></div></div><div id="toolbar_u17l1n1739" class="fl-widget-titlebar up-portlet-titlebar"><a href="/f/u17l1s6/normal/render.uP?pCt=directoryinfo.u17l1n1739&amp;pCs=minimized&amp;pCp" title="Enter minimized mode for this portlet" class="up-portlet-control hide-content"><span class="icon"></span><span class="label">Minimize</span></a><h2><a id="u17l1n1739" href="/f/u17l1s6/p/directoryinfo.u17l1n1739/max/render.uP?pCp">
+                      Directory In
+2018-11-14 23:09:18.361 2234-2258/zandoh.com.polyview D/MYAPP: formation
+                    </a></h2><div class="up-portlet-controls"><a title="Enter maximized mode for this portlet" href="/f/u17l1s6/p/directoryinfo.u17l1n1739/max/render.uP?pCp" class="up-portlet-control focus"><span class="icon"></span><span class="label">Maximize</span></a><a id="removePortlet_u17l1n1739" title="Are you sure you want to remove this portlet?" href="/f/u17l1s6/p/directoryinfo.u17l1n1739/normal/action.uP?u_remove_target=u17l1n1739" class="up-portlet-control remove"><span class="icon"></span><span class="label">Remove</span></a></div></div><div id="portletContent_u17l1n1739" class="fl-widget-content fl-fix up-portlet-content-wrapper"><div class="up-portlet-content-wrapper-inner">
+    <style type="text/css">
+    table.sortable th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):after {
+        color:#619357;
+        content: " \25B4\25BE" 
+    }
+    table.sortable tbody tr:nth-child(2n+1) {
+       background:#f2f2f2;
+    }
+    
+    </style>
+    
+    <script src="/directoryinfo/JavaScript/sorttable.js" type="text
+2018-11-14 23:09:18.361 2234-2258/zandoh.com.polyview D/MYAPP: /javascript"></script>
+    
+    <script>
+    function initSort()
+    {
+        var myTH = document.getElementsByTagName("th")[0];
+        sorttable.innerSortFunction.apply(myTH, []);
+    
+    }
+    </script>
+    
+    <p class="small">
+        Search this directory for Cal Poly student, faculty, and staff, department, club, and unit information.
+        Any use of this directory must comply with applicable
+        <a target="_blank" href="http://security.calpoly.edu/content/policies/rup/index"> University policies</a>.
+    </p>
+    
+    <form method="POST" action="/f/u17l1s6/p/directoryinfo.u17l1n1739/max/action.uP?pP_action=search" >
+    
+            <h2>Simple Search</h2>
+            <a class="small" href="/f/u17l1s6/p/directoryinfo.u17l1n1739/max/action.uP?pP_searchMode=advanced&amp;pP_action=configure">
+                Switch to Advanced Search</a>
+            <br>
+            <br>
+            <label for="personType">Category</label><br>
+            <div style="padding: 10px 0;">
+                <div style="float: left; padding: 0 20px 15px 0;">
+        <select id="personType" name="perso
+2018-11-14 23:09:18.361 2234-2258/zandoh.com.polyview D/MYAPP: nType" >
+                <option value="all"    
+        selected="selected"
+    >All</option>
+                <option value="student"    
+        
+    >Student</option>
+                <option value="imp"    
+        
+    >Faculty/Staff</option>
+                <option value="dept"    
+        
+    >Depts/Clubs/Units</option>
+        </select>
+                </div>
+                <div style="float: left; padding-bottom: 15px;">
+                        <input type="text" id="simpleSearchParameters" name="simpleSearchParameters" value="" maxlength="30"     >
+    
+      
+                    <div style="padding-left: 15px; display: inline;">
+                        <input class="button" value="Search" name="submit" type="submit" />
+                    </div>
+                </div>
+            </div>
+            <div style="clear: both;"><br></div>
+    </form>
+    
+    
+    </div></div><div class="up-portlet-wrapper-bottom"><div class="up-portlet-wrapper-bottom-inner"></div></div></div></div><div id="portlet_u17l1n1696" class="fl-widget up-portlet-wrapper myclasses movable deletable   "><div class
+2018-11-14 23:09:18.362 2234-2258/zandoh.com.polyview D/MYAPP: ="up-portlet-wrapper-inner"><div class="up-portlet-wrapper-top"><div class="up-portlet-wrapper-top-inner"></div></div><div id="toolbar_u17l1n1696" class="fl-widget-titlebar up-portlet-titlebar"><a href="/f/u17l1s6/normal/render.uP?pCt=myclasses.u17l1n1696&amp;pCs=minimized&amp;pCp" title="Enter minimized mode for this portlet" class="up-portlet-control hide-content"><span class="icon"></span><span class="label">Minimize</span></a><h2><a id="u17l1n1696" href="/f/u17l1s6/p/myclasses.u17l1n1696/max/render.uP?pCp">
+                      My Classes
+                    </a></h2><div class="up-portlet-controls"><a title="Enter maximized mode for this portlet" href="/f/u17l1s6/p/myclasses.u17l1n1696/max/render.uP?pCp" class="up-portlet-control focus"><span class="icon"></span><span class="label">Maximize</span></a><a id="removePortlet_u17l1n1696" title="Are you sure you want to remove this portlet?" href="/f/u17l1s6/p/myclasses.u17l1n1696/normal/action.uP?u_remove_target=u17l1n1696" class="up-portlet-
+2018-11-14 23:09:18.362 2234-2258/zandoh.com.polyview D/MYAPP: control remove"><span class="icon"></span><span class="label">Remove</span></a></div></div><div id="portletContent_u17l1n1696" class="fl-widget-content fl-fix up-portlet-content-wrapper"><div class="up-portlet-content-wrapper-inner">
+    <style>
+        .dojoxCalendarSimpleColumnView .dojoxCalendarEvent.LAB .bg {
+            background-image: url("https://webresource.its.calpoly.edu/portlet/CoursesPortlet/images/1/flask.png");
+            background-repeat: no-repeat;
+            background-position: right bottom;
+        }
+    </style>
+    
+    <link href="https://webresource.its.calpoly.edu/v2/courses/36/css/CoursesPortlet.min.css" rel="stylesheet" type="text/css"/>
+    <div id="Pluto_33_u17l1n1696_166308_portletContent"></div>
+    <div class="portlet-msg-info">Class data may be up to 24 hours old; PolyLearn links may take up to 4 hours to update.
+    Visit the
+    <a target="_blank" href="https://idp.calpoly.edu/idp/profile/cas/login?method=post&amp;service=https://cmsweb.calpoly.edu/psp/CSLOPRD/EMPLOYEE/SA/c/SA_LEARNER_SERVICES.SSS_
+2018-11-14 23:09:18.362 2234-2258/zandoh.com.polyview D/MYAPP: STUDENT_CENTER.GBL?FolderPath=PORTAL_ROOT_OBJECT.CO_EMPLOYEE_SELF_SERVICE.HC_SSS_STUDENT_CENTER%26IsFolder=false%26IgnoreParamTempl=FolderPath%2cIsFolder%26RL=%26target=main0%26navc=2398?cmd=login%26languageCd=ENG%26userid=PS%26pwd=z">Student Center</a> for your latest class information and <a target="_blank" href="https://polylearn.calpoly.edu/login/index.php">PolyLearn Home</a> for your PolyLearn courses.
+    </div>
+    <script type="text/javascript">
+    require(['dijit/PortalBasicDijit', 'dojox/PortalCalendar'], function(){
+    require({
+        packages: [
+            {name:"MyClassesPortlet", location: "https://webresource.its.calpoly.edu/v2/courses/36/js", main:"MyClasses"}
+        ]
+        },
+        ["MyClassesPortlet", "dojo/domReady!"], function(Portlet){
+            new Portlet({
+                id:"Pluto_33_u17l1n1696_166308_CoursesPortlet",
+                namespace:"Pluto_33_u17l1n1696_166308_",
+                contextPath:"/CoursesPortlet",
+                windowState:"normal",
+                renderNormalURL:"/f/u17l1s6/normal
+2018-11-14 23:09:18.362 2234-2258/zandoh.com.polyview D/MYAPP: /render.uP?pCt=myclasses.u17l1n1696&pCs=normal",
+                studySessionTermCode:"2192",
+                studySessionTopics:{"PHYS141":{"id":35,"subject":"PHYS","catalogNumber":"141","title":"PHYS-141"},"PHYS121":{"id":30,"subject":"PHYS","catalogNumber":"121","title":"PHYS-121"},"PHYS122":{"id":31,"subject":"PHYS","catalogNumber":"122","title":"PHYS-122"},"CE204":{"id":5,"subject":"CE","catalogNumber":"204","title":"CE-204"},"CHEM128":{"id":11,"subject":"CHEM","catalogNumber":"128","title":"CHEM-128"},"MATH143":{"id":22,"subject":"MATH","catalogNumber":"143","title":"MATH-143"},"CHEM129":{"id":12,"subject":"CHEM","catalogNumber":"129","title":"CHEM-129"},"MATH221":{"id":25,"subject":"MATH","catalogNumber":"221","title":"MATH-221"},"MATH244":{"id":27,"subject":"MATH","catalogNumber":"244","title":"MATH-244"},"CE207":{"id":6,"subject":"CE","catalogNumber":"207","title":"CE-207"},"CHEM127":{"id":10,"subject":"CHEM","catalogNumber":"127","title":"CHEM-127"},"CHEM124":{"id":8,"subject":"CHEM"
+2018-11-14 23:09:18.362 2234-2258/zandoh.com.polyview D/MYAPP: ,"catalogNumber":"124","title":"CHEM-124"},"MATH161":{"id":23,"subject":"MATH","catalogNumber":"161","title":"MATH-161"},"CHEM125":{"id":9,"subject":"CHEM","catalogNumber":"125","title":"CHEM-125"},"MATH162":{"id":24,"subject":"MATH","catalogNumber":"162","title":"MATH-162"},"BIO160":{"id":2,"subject":"BIO","catalogNumber":"160","title":"BIO-160"},"MATH141":{"id":20,"subject":"MATH","catalogNumber":"141","title":"MATH-141"},"MATH142":{"id":21,"subject":"MATH","catalogNumber":"142","title":"MATH-142"},"MATH241":{"id":26,"subject":"MATH","catalogNumber":"241","title":"MATH-241"},"BIO162":{"id":4,"subject":"BIO","catalogNumber":"162","title":"BIO-162"},"STAT252":{"id":39,"subject":"STAT","catalogNumber":"252","title":"STAT-252"},"BIO161":{"id":3,"subject":"BIO","catalogNumber":"161","title":"BIO-161"},"STAT251":{"id":38,"subject":"STAT","catalogNumber":"251","title":"STAT-251"},"BIO111":{"id":1,"subject":"BIO","catalogNumber":"111","title":"BIO-111"},"CPE202":{"id":17,"subject":"CPE","cat
+2018-11-14 23:09:18.362 2234-2258/zandoh.com.polyview D/MYAPP: alogNumber":"202","title":"CPE-202"},"CPE203":{"id":16,"subject":"CPE","catalogNumber":"203","title":"CPE-203"},"PHYS131":{"id":32,"subject":"PHYS","catalogNumber":"131","title":"PHYS-131"},"MATH116":{"id":18,"subject":"MATH","catalogNumber":"116","title":"MATH-116"},"PHYS132":{"id":33,"subject":"PHYS","catalogNumber":"132","title":"PHYS-132"},"PHYS133":{"id":34,"subject":"PHYS","catalogNumber":"133","title":"PHYS-133"},"CHEM216":{"id":14,"subject":"CHEM","catalogNumber":"216","title":"CHEM-216"},"CPE101":{"id":15,"subject":"CPE","catalogNumber":"101","title":"CPE-101"},"ME212":{"id":29,"subject":"ME","catalogNumber":"212","title":"ME-212"},"ME211":{"id":28,"subject":"ME","catalogNumber":"211","title":"ME-211"},"CHEM312":{"id":13,"subject":"CHEM","catalogNumber":"312","title":"CHEM-312"},"CHEM110":{"id":7,"subject":"CHEM","catalogNumber":"110","title":"CHEM-110"},"STAT218":{"id":37,"subject":"STAT","catalogNumber":"218","title":"STAT-218"},"STAT217":{"id":36,"subject":"STAT","catalogNu
+2018-11-14 23:09:18.362 2234-2258/zandoh.com.polyview D/MYAPP: mber":"217","title":"STAT-217"},"MATH118":{"id":19,"subject":"MATH","catalogNumber":"118","title":"MATH-118"}},
+                studySessionEnrollmentRequest:null
+            }, "Pluto_33_u17l1n1696_166308_portletContent").startup();
+        }
+    );
+    });
+    </script>
+    </div></div><div class="up-portlet-wrapper-bottom"><div class="up-portlet-wrapper-bottom-inner"></div></div></div></div><div id="portlet_u17l1n1746" class="fl-widget up-portlet-wrapper weather movable deletable   "><div class="up-portlet-wrapper-inner"><div class="up-portlet-wrapper-top"><div class="up-portlet-wrapper-top-inner"></div></div><div id="toolbar_u17l1n1746" class="fl-widget-titlebar up-portlet-titlebar"><a href="/f/u17l1s6/normal/render.uP?pCt=weather.u17l1n1746&amp;pCs=minimized&amp;pCp" title="Enter minimized mode for this portlet" class="up-portlet-control hide-content"><span class="icon"></span><span class="label">Minimize</span></a><h2><a id="u17l1n1746" href="/f/u17l1s6/p/weather.u17l1n1746/max/render.uP?pCp">
+                 
+2018-11-14 23:09:18.362 2234-2258/zandoh.com.polyview D/MYAPP:      Weather
+                    </a></h2><div class="up-portlet-controls"><a href="/f/u17l1s6/normal/render.uP?pCt=weather.u17l1n1746&amp;pCm=edit&amp;pCp#u17l1n1746" title="Edit Portlet" class="up-portlet-control edit"><span class="icon"><i class="fa fa-cog" aria-hidden="true"></i></span><span class="label">Edit</span></a><a title="Enter maximized mode for this portlet" href="/f/u17l1s6/p/weather.u17l1n1746/max/render.uP?pCp" class="up-portlet-control focus"><span class="icon"></span><span class="label">Maximize</span></a><a id="removePortlet_u17l1n1746" title="Are you sure you want to remove this portlet?" href="/f/u17l1s6/p/weather.u17l1n1746/normal/action.uP?u_remove_target=u17l1n1746" class="up-portlet-control remove"><span class="icon"></span><span class="label">Remove</span></a></div></div><div id="portletContent_u17l1n1746" class="fl-widget-content fl-fix up-portlet-content-wrapper"><div class="up-portlet-content-wrapper-inner">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+     
+    
+    
+    
+    
+    
+        <link rel="stylesheet" hre
+2018-11-14 23:09:18.362 2234-2258/zandoh.com.polyview D/MYAPP: f="/WeatherPortlet/css/weather.min.css" type="text/css" />
+    
+    
+    
+    
+    
+    <div id="Pluto_50_u17l1n1746_166308_jasigWeatherPortlet" class="jasigWeatherPortlet">
+    
+      
+      
+        
+          <div class="weather-location">
+            <div class="location">
+              
+                
+                  <a href="http://us.rd.yahoo.com/dailynews/rss/weather/Country__Country/*https://weather.yahoo.com/country/state/city-2488117/" target="_blank" title="http://us.rd.yahoo.com/dailynews/rss/weather/Country__Country/*https://weather.yahoo.com/country/state/city-2488117/">San Luis Obispo,  CA</a>
+                
+                
+              
+            </div>
+            <div class="conditions">
+              
+              <div class="current">
+                
+                  
+                    
+                    
+                    
+                    
+                    Currently<br/>
+                                    
+                                        
+                                            <img src="https://s.yimg.com/zz/combo?/a/i/us/we/52/31.gif" alt="Clear" title="Clear"/><br/>
+                                        
+                                        
+                            
+2018-11-14 23:09:18.362 2234-2258/zandoh.com.polyview D/MYAPP:         
+                    47&#xB0; F
+                  
+                  
+                
+                <br/>
+                
+                  
+                    Wind: 35 at 7.0 mph
+                  
+                  
+                
+                <br/>
+                
+                  
+                    Humidity: 53.0&#37;
+                  
+                  
+                
+                <br/>
+                
+                  
+                    Pressure: 994.0 mb
+                  
+                  
+                
+              </div>
+              
+                <div class="fullforecast">
+                  
+                    <div class="forecast">
+                      Wed<br/>
+                      
+                      
+                      
+                      
+                                        
+                                            
+                                                <img src="https://webresource.its.calpoly.edu/proxy/http://l.yimg.com/a/i/us/we/52/32.gif" alt="Sunny" title="Sunny"/><br/>
+                                            
+                                            
+                                        
+                      80&#xB0; | 42&#xB0;
+                    </div>
+                  
+                    <div class="forecast">
+                      Thu<br/>
+                      
+                      
+                      
+                      
+                                        
+                             
+2018-11-14 23:09:18.362 2234-2258/zandoh.com.polyview D/MYAPP:                
+                                                <img src="https://webresource.its.calpoly.edu/proxy/http://l.yimg.com/a/i/us/we/52/28.gif" alt="Mostly Cloudy" title="Mostly Cloudy"/><br/>
+                                            
+                                            
+                                        
+                      77&#xB0; | 42&#xB0;
+                    </div>
+                  
+                    <div class="forecast">
+                      Fri<br/>
+                      
+                      
+                      
+                      
+                                        
+                                            
+                                                <img src="https://webresource.its.calpoly.edu/proxy/http://l.yimg.com/a/i/us/we/52/30.gif" alt="Partly Cloudy" title="Partly Cloudy"/><br/>
+                                            
+                                            
+                                        
+                      72&#xB0; | 39&#xB0;
+                    </div>
+                  
+                    <div class="forecast">
+                      Sat<br/>
+                      
+                      
+                      
+                      
+                      
+2018-11-14 23:09:18.362 2234-2258/zandoh.com.polyview D/MYAPP:                   
+                                            
+                                                <img src="https://webresource.its.calpoly.edu/proxy/http://l.yimg.com/a/i/us/we/52/30.gif" alt="Partly Cloudy" title="Partly Cloudy"/><br/>
+                                            
+                                            
+                                        
+                      66&#xB0; | 42&#xB0;
+                    </div>
+                  
+                    <div class="forecast">
+                      Sun<br/>
+                      
+                      
+                      
+                      
+                                        
+                                            
+                                                <img src="https://webresource.its.calpoly.edu/proxy/http://l.yimg.com/a/i/us/we/52/28.gif" alt="Mostly Cloudy" title="Mostly Cloudy"/><br/>
+                                            
+                                            
+                                        
+                      69&#xB0; | 41&#xB0;
+                    </div>
+                  
+                    <div class="forecast">
+                      Mon<br/>
+                      
+            
+2018-11-14 23:09:18.362 2234-2258/zandoh.com.polyview D/MYAPP:          
+                      
+                      
+                                        
+                                            
+                                                <img src="https://webresource.its.calpoly.edu/proxy/http://l.yimg.com/a/i/us/we/52/28.gif" alt="Mostly Cloudy" title="Mostly Cloudy"/><br/>
+                                            
+                                            
+                                        
+                      69&#xB0; | 41&#xB0;
+                    </div>
+                  
+                    <div class="forecast">
+                      Tue<br/>
+                      
+                      
+                      
+                      
+                                        
+                                            
+                                                <img src="https://webresource.its.calpoly.edu/proxy/http://l.yimg.com/a/i/us/we/52/30.gif" alt="Partly Cloudy" title="Partly Cloudy"/><br/>
+                                            
+                                            
+                                        
+                      67&#xB0; | 44&#xB0;
+                    </div>
+                  
+                    <div class=
+2018-11-14 23:09:18.362 2234-2258/zandoh.com.polyview D/MYAPP: "forecast">
+                      Wed<br/>
+                      
+                      
+                      
+                      
+                                        
+                                            
+                                                <img src="https://webresource.its.calpoly.edu/proxy/http://l.yimg.com/a/i/us/we/52/39.gif" alt="Scattered Showers" title="Scattered Showers"/><br/>
+                                            
+                                            
+                                        
+                      66&#xB0; | 41&#xB0;
+                    </div>
+                  
+                    <div class="forecast">
+                      Thu<br/>
+                      
+                      
+                      
+                      
+                                        
+                                            
+                                                <img src="https://webresource.its.calpoly.edu/proxy/http://l.yimg.com/a/i/us/we/52/30.gif" alt="Partly Cloudy" title="Partly Cloudy"/><br/>
+                                            
+                                            
+                                        
+                      68&#xB0; |
+2018-11-14 23:09:18.362 2234-2258/zandoh.com.polyview D/MYAPP:  39&#xB0;
+                    </div>
+                  
+                    <div class="forecast">
+                      Fri<br/>
+                      
+                      
+                      
+                      
+                                        
+                                            
+                                                <img src="https://webresource.its.calpoly.edu/proxy/http://l.yimg.com/a/i/us/we/52/39.gif" alt="Scattered Showers" title="Scattered Showers"/><br/>
+                                            
+                                            
+                                        
+                      67&#xB0; | 39&#xB0;
+                    </div>
+                  
+                </div>
+              
+            </div>
+          </div>
+        
+            
+            <div class="footer">
+                
+            
+            
+              <div class="provided-by">
+                Weather provided by <a href="http://weather.yahoo.com">Yahoo! Weather</a>
+              </div>
+            
+                
+                    <div class="edit-link">
+                        
+                        <a href="/f/u17l1s6/p/weather.u17l1n1746/max/render.uP?pCm=edit">Edit Locations</a>
+                   
+2018-11-14 23:09:18.362 2234-2258/zandoh.com.polyview D/MYAPP:  </div>
+                
+            </div>
+      
+    
+    </div>
+    </div></div><div class="up-portlet-wrapper-bottom"><div class="up-portlet-wrapper-bottom-inner"></div></div></div></div></div></div><div id="column_u17l1s12" class="portal-page-column  &#xa;        &#x9;column-2 fl-container-flex40 movable deletable editable canAddChildren" style="clear: none;"><div id="inner-column_u17l1s12" class="portal-page-column-inner"><div id="portlet_u17l1n576" class="fl-widget up-portlet-wrapper AnnouncementsDisplay movable deletable   "><div class="up-portlet-wrapper-inner"><div class="up-portlet-wrapper-top"><div class="up-portlet-wrapper-top-inner"></div></div><div id="toolbar_u17l1n576" class="fl-widget-titlebar up-portlet-titlebar"><a href="/f/u17l1s6/normal/render.uP?pCt=AnnouncementsDisplay.u17l1n576&amp;pCs=minimized&amp;pCp" title="Enter minimized mode for this portlet" class="up-portlet-control hide-content"><span class="icon"></span><span class="label">Minimize</span></a><h2><a id="u17l1n576" href="/f/u1
+2018-11-14 23:09:18.362 2234-2258/zandoh.com.polyview D/MYAPP: 7l1s6/p/AnnouncementsDisplay.u17l1n576/max/render.uP?pCp">
+                      Campus Announcements
+                    </a></h2><div class="up-portlet-controls"><a href="/f/u17l1s6/normal/render.uP?pCt=AnnouncementsDisplay.u17l1n576&amp;pCm=edit&amp;pCp#u17l1n576" title="Edit Portlet" class="up-portlet-control edit"><span class="icon"><i class="fa fa-cog" aria-hidden="true"></i></span><span class="label">Edit</span></a><a title="Enter maximized mode for this portlet" href="/f/u17l1s6/p/AnnouncementsDisplay.u17l1n576/max/render.uP?pCp" class="up-portlet-control focus"><span class="icon"></span><span class="label">Maximize</span></a><a id="removePortlet_u17l1n576" title="Are you sure you want to remove this portlet?" href="/f/u17l1s6/p/AnnouncementsDisplay.u17l1n576/normal/action.uP?u_remove_target=u17l1n576" class="up-portlet-control remove"><span class="icon"></span><span class="label">Remove</span></a></div></div><div id="portletContent_u17l1n576" class="fl-widget-content fl-fix up-portlet
+2018-11-14 23:09:18.362 2234-2258/zandoh.com.polyview D/MYAPP: -content-wrapper"><div class="up-portlet-content-wrapper-inner">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <style type="text/css">
+    .Pluto_35_u17l1n576_166308_-row1color { padding: 0px; background-color: #e0e9e9; }
+    .Pluto_35_u17l1n576_166308_-row2color { padding: 5px; background-color: #fff; }
+    .Pluto_35_u17l1n576_166308_-emerg { padding: 5px; margin-bottom:5px; }
+    .Pluto_35_u17l1n576_166308_-emerg a, .Pluto_35_u17l1n576_166308_-emerg a:visited { font-weight: bold; }
+    div.Pluto_35_u17l1n576_166308_-announcement-date {display: inline-block; width: 15%; vertical-align: middle; }
+    div.Pluto_35_u17l1n576_166308_-abstract {display: inline-block; width: 70%; vertical-align: middle; }
+    div.Pluto_35_u17l1n576_166308_-announcement-link {display: inline-block; width: 10%; vertical-align: middle; }
+    </style>
+    
+    
+    
+    <script src="/Announcements/rs/jquery/1.6.4/jquery-1.6.4.min.js" type="text/javascript"></script>
+    <script src="/Announcements/rs/jqueryui/1.8.13/jquery-ui-1.8.13.min.js" type="text/javascript"></script>
+    
+    <script type="text
+2018-11-14 23:09:18.362 2234-2258/zandoh.com.polyview D/MYAPP: /javascript">
+      var Pluto_35_u17l1n576_166308_ = Pluto_35_u17l1n576_166308_ || {}; //create a unique variable to assign our namespace too
+      Pluto_35_u17l1n576_166308_.jQuery = jQuery.noConflict(true); //assign jQuery to this namespace
+    </script>
+    
+    
+    
+    <script type="text/javascript">
+    
+        /*  runs when the document is finished loading.  This prevents things like the 'div' from being fully created */
+     
+        Pluto_35_u17l1n576_166308_.jQuery(function () {
+            var $ = Pluto_35_u17l1n576_166308_.jQuery; //reassign $ for normal use of jQuery
+        
+            var moreText = "more";
+            var lessText = "less";
+            var idealNumber = 6;
+            
+            var topics = $(".announcement-topic").length;
+            var limit = $(".announcement-item").length < idealNumber ? Number.NaN : Math.floor(idealNumber / topics);
+        
+            var expand = function(topic) {
+                topic.children(".announcement-item").show();       
+            };
+        
+            var collapse = function(topic) {
+                var i = 0;
+2018-11-14 23:09:18.362 2234-2258/zandoh.com.polyview D/MYAPP:             var collapsed = false;
+                topic.children(".announcement-item").each(function() {
+                  if (! isNaN(limit)) {
+                      if (i > 0 && i >= limit) {
+                $(this).hide();
+                collapsed = true;
+                    }
+                  }
+                  i++;
+                });
+                return  (collapsed == true);
+            };
+            
+            $(".announcement-topic").each(function() {
+                if (collapse($(this))) {
+                  $(this).append('<a class="announcement-show-hide" >' + moreText + '</a>')
+                } 
+            });
+                
+            $(".announcement-show-hide").toggle(function () {
+                expand($(this).closest(".announcement-topic"));
+                $(this).text(lessText);
+            }, function () {
+                collapse($(this).closest(".announcement-topic"));
+                $(this).text(moreText);
+            });
+        });  
+    </script>
+    
+    
+      
+        <div colspan="2" class="announcement-topic-header">
+            System Status
+        </div>
+      
+      <div class="announcement-to
+2018-11-14 23:09:18.362 2234-2258/zandoh.com.polyview D/MYAPP: pic announcement-emerg">
+        
+          <div class="announcement-item">       
+              <div class="announcement-item-abstract">
+                  
+                  
+                    <a title="Display the full announcement" class="announcement-link" href="/f/u17l1s6/normal/render.uP?pCt=AnnouncementsDisplay.u17l1n576&pP_announcementId=107423&pP_action=displayFullAnnouncement">PolyPlanner and PeopleSoft Outage 11/14 8pm - midnight</a>
+                  
+                  <!--
+                    
+                  
+                    <a title="Display the full announcement" class="announcement-link" href="/f/u17l1s6/normal/render.uP?pCt=AnnouncementsDisplay.u17l1n576&pP_announcementId=107423&pP_action=displayFullAnnouncement">PolyPlanner and PeopleSoft Outage 11/14 8pm - midnight</a>
+                  
+                -->
+                  <p>
+                    
+                        PolyPlanner and PeopleSoft Student &amp; HR Administration Production Maintenance Outage: Wednesday 8pm- midnight<br/>
+                    
+                  </p> 
+              
+              </div>
+              
+              <div class="announcement-
+2018-11-14 23:09:18.362 2234-2258/zandoh.com.polyview D/MYAPP: item-date">
+                <span class="portlet-section-text">Nov 14, 2018 4:00 PM</span>
+              </div>
+          </div>    
+        
+      </div>
+    
+    
+    
+        
+        
+        
+    
+            <div colspan="2" class="announcement-topic-header">
+                Campuswide
+            </div>
+              
+          <div class="announcement-topic">
+            
+              <div class="announcement-item">       
+                  <div class="announcement-item-abstract">
+                      
+                      
+                        <a title="Display the full announcement" class="announcement-link" href="/f/u17l1s6/normal/render.uP?pCt=AnnouncementsDisplay.u17l1n576&pP_announcementId=115607&pP_action=displayFullAnnouncement">Myron&#039;s Faculty and Staff Mixer Offers N.E. Seafood, Nov. 15</a>
+                      
+                      <!--
+                        
+                            <a href="https://www.calpolydining.com/myrons/" target="_blank">Myron&#039;s Faculty and Staff Mixer Offers N.E. Seafood, Nov. 15</a>
+                        
+                      
+                    -->
+                      <p>
+                        
+                            Sample a variety of tasty New En
+2018-11-14 23:09:18.362 2234-2258/zandoh.com.polyview D/MYAPP: gland seafood classics at Myron’s Mixer from 4 to 6 p.m. on Thursday, Nov. 15. Just $5 for faculty &amp; staff.<br/>
+                        
+                      </p> 
+                  
+                  </div>
+                  
+                  <div class="announcement-item-date">
+                    <span class="portlet-section-text">Nov 13, 2018 10:38 AM</span>
+                  </div>
+              </div>    
+            
+              <div class="announcement-item">       
+                  <div class="announcement-item-abstract">
+                      
+                      
+                        <a title="Display the full announcement" class="announcement-link" href="/f/u17l1s6/normal/render.uP?pCt=AnnouncementsDisplay.u17l1n576&pP_announcementId=116007&pP_action=displayFullAnnouncement">Study Abroad Info Sessions Nov. 12 - Nov. 16</a>
+                      
+                      <!--
+                        
+                            <a href=" https://abroad.calpoly.edu/index.cfm?FuseAction=Abroad.ViewLink&amp;Parent_ID=6A691DA6-5056-BA1F-742FCC16AEA0004D&amp;Link_ID=00092F68-5056-BA1F-713B6653724966DD" target="_blank">Study Abroad Info Session
+2018-11-14 23:09:18.362 2234-2258/zandoh.com.polyview D/MYAPP: s Nov. 12 - Nov. 16</a>
+                        
+                      
+                    -->
+                      <p>
+                        
+                            Study Abroad offers Learn by Going opportunities for all Cal Poly students. A series of information sessions are offered  Nov. 12 - Nov. 16<br/>
+                        
+                      </p> 
+                  
+                  </div>
+                  
+                  <div class="announcement-item-date">
+                    <span class="portlet-section-text">Nov 11, 2018 12:00 AM</span>
+                  </div>
+              </div>    
+            
+              <div class="announcement-item">       
+                  <div class="announcement-item-abstract">
+                      
+                      
+                        <a title="Display the full announcement" class="announcement-link" href="/f/u17l1s6/normal/render.uP?pCt=AnnouncementsDisplay.u17l1n576&pP_announcementId=115885&pP_action=displayFullAnnouncement">Learn about the archaeology of warfare on Nov. 15</a>
+                      
+                      <!--
+                        
+                      
+                        <a title="Display the full announcement" class="announcement
+2018-11-14 23:09:18.362 2234-2258/zandoh.com.polyview D/MYAPP: -link" href="/f/u17l1s6/normal/render.uP?pCt=AnnouncementsDisplay.u17l1n576&pP_announcementId=115885&pP_action=displayFullAnnouncement">Learn about the archaeology of warfare on Nov. 15</a>
+                      
+                    -->
+                      <p>
+                        
+                            Were these artifacts weapons or hunting tools? Was this fire an act of war or an accident?<br/>
+                        
+                      </p> 
+                  
+                  </div>
+                  
+                  <div class="announcement-item-date">
+                    <span class="portlet-section-text">Nov 9, 2018 12:00 AM</span>
+                  </div>
+              </div>    
+            
+              <div class="announcement-item">       
+                  <div class="announcement-item-abstract">
+                      
+                      
+                        <a title="Display the full announcement" class="announcement-link" href="/f/u17l1s6/normal/render.uP?pCt=AnnouncementsDisplay.u17l1n576&pP_announcementId=115966&pP_action=displayFullAnnouncement"> Religious Studies to Host Nov. 14 Scientology Talk </a>
+                      
+                      
+2018-11-14 23:09:18.362 2234-2258/zandoh.com.polyview D/MYAPP: <!--
+                        
+                      
+                        <a title="Display the full announcement" class="announcement-link" href="/f/u17l1s6/normal/render.uP?pCt=AnnouncementsDisplay.u17l1n576&pP_announcementId=115966&pP_action=displayFullAnnouncement"> Religious Studies to Host Nov. 14 Scientology Talk </a>
+                      
+                    -->
+                      <p>
+                        
+                            Prof. Stephen Lloyd-Moffett will talk to Debbie Cragen of Scientology of Santa Barbara on Nov. 14—the first in a series with local religious leaders.<br/>
+                        
+                      </p> 
+                  
+                  </div>
+                  
+                  <div class="announcement-item-date">
+                    <span class="portlet-section-text">Nov 8, 2018 12:00 AM</span>
+                  </div>
+              </div>    
+            
+              <div class="announcement-item">       
+                  <div class="announcement-item-abstract">
+                      
+                      
+                        <a title="Display the full announcement" class="announcement-link" href="/f/u17l1s6/normal/render.uP?pCt=Announcem
+2018-11-14 23:09:18.363 2234-2258/zandoh.com.polyview D/MYAPP: entsDisplay.u17l1n576&pP_announcementId=115905&pP_action=displayFullAnnouncement">Screening of National Theatre Live’s ‘Frankenstein’ Nov. 14</a>
+                      
+                      <!--
+                        
+                      
+                        <a title="Display the full announcement" class="announcement-link" href="/f/u17l1s6/normal/render.uP?pCt=AnnouncementsDisplay.u17l1n576&pP_announcementId=115905&pP_action=displayFullAnnouncement">Screening of National Theatre Live’s ‘Frankenstein’ Nov. 14</a>
+                      
+                    -->
+                      <p>
+                        
+                            Come enjoy a free screening of Frankenstein in Chumash Auditorium!<br/>
+                        
+                      </p> 
+                  
+                  </div>
+                  
+                  <div class="announcement-item-date">
+                    <span class="portlet-section-text">Nov 8, 2018 12:00 AM</span>
+                  </div>
+              </div>    
+            
+          </div>
+          
+    
+            <div colspan="2" class="announcement-topic-header">
+                Student Events
+            </div>
+              
+          <div class="announcement-to
+2018-11-14 23:09:18.363 2234-2258/zandoh.com.polyview D/MYAPP: pic">
+            
+              <div class="announcement-item">       
+                  <div class="announcement-item-abstract">
+                      
+                      
+                        <a title="Display the full announcement" class="announcement-link" href="/f/u17l1s6/normal/render.uP?pCt=AnnouncementsDisplay.u17l1n576&pP_announcementId=114877&pP_action=displayFullAnnouncement">College of Liberal Arts Underrepresented Students Network (USN)</a>
+                      
+                      <!--
+                        
+                            <a href="https://cla.calpoly.edu/usn" target="_blank">College of Liberal Arts Underrepresented Students Network (USN)</a>
+                        
+                      
+                    -->
+                      <p>
+                        
+                            Are you a student from an underrepresented group? Connect with a peer mentor today!<br/>
+                        
+                      </p> 
+                  
+                  </div>
+                  
+                  <div class="announcement-item-date">
+                    <span class="portlet-section-text">Oct 4, 2018 12:00 AM</span>
+                  </div>
+              </div>    
+            
+2018-11-14 23:09:18.363 2234-2258/zandoh.com.polyview D/MYAPP:      </div>
+          
+        
+    
+    
+    <div style="clear:both"></div>
+    
+    <table border="0" width="100%">
+      <tr>
+      <td align="left" style="font-size:0.9em; padding-top:0.5em;">
+        
+        
+        
+        <a href="/f/u17l1s6/normal/render.uP?pCt=AnnouncementsDisplay.u17l1n576&pCm=view&pP_action=displayHistory">Previous Announcements</a>
+      </td>
+      <td align="right" style="font-size:0.9em; padding-top:0.5em;">
+        
+          <a style="text-decoration:none;" href="/f/u17l1s6/normal/render.uP?pCt=AnnouncementsDisplay.u17l1n576&pCm=edit&pCs=normal"><img src="/Announcements/icons/pencil.png" border="0" height="16" width="16" style="vertical-align:middle"/> My Subscriptions</a>
+        
+      </td>
+      </tr>
+    </table>
+    </div></div><div class="up-portlet-wrapper-bottom"><div class="up-portlet-wrapper-bottom-inner"></div></div></div></div></div></div></div></div></div></div><div id="portalPageFooter" class="fl-container-flex"><div id="portalPageFooterInner"><div id="footerHelpLinks"><a href="http://servicedesk.calpoly.edu/content/my_cp_support/index">Help 
+2018-11-14 23:09:18.363 2234-2258/zandoh.com.polyview D/MYAPP: &amp; FAQ</a> |
+            <a href="/help/feedback.html">Send Feedback</a> | 
+            <span>04</span></div></div></div><div id="dojoMenus" class="dialogs" style="display:none;"><div id="portalDropWarning" class="drop-warning" style="display:none;"><p>This portlet cannot be moved here. The portlet underneath is locked.</p></div></div><script type="text/javascript">
+           up.jQuery(document).ready(function(){
+              
+              up.LayoutPreferences(
+                "body",
+                {
+                  tabContext: 'header',
+                  numberOfPortlets: '5',
+                  portalContext: '',
+                  mediaPath: '/media/skins/universality',
+                  currentSkin: 'wintergreen',
+                  subscriptionsSupported: 'true',
+                  layoutPersistenceUrl: '/api/layout',
+                  channelRegistryUrl: '/api/portletList',
+                  subscribableTabUrl: '/api/subscribableTabs.json',
+                  messages: {
+                      confirmRemoveTab: 'Are you sure you want to remove this
+2018-11-14 23:09:18.363 2234-2258/zandoh.com.polyview D/MYAPP:  tab?',
+                      confirmRemovePortlet: 'Are you sure you want to remove this portlet?',
+                      addTabLabel: 'My Tab',
+                      column: 'Column',
+                      columns: 'Columns',
+                      fullWidth: 'Full-width',
+                      narrowWide: 'Narrow, wide',
+                      even: 'Even',
+                      wideNarrow: 'Wide, narrow',
+                      narrowWideNarrow: 'Narrow, wide, narrow',
+                      searchForStuff: 'Search for Portlets',
+                      allCategories: 'ALL',
+                      persistenceError: 'Error persisting layout change'
+                  }
+                }
+              );
+           });
+        </script><script type="text/javascript">
+                // Run function when document is ready (fully loaded).
+                up.jQuery(document).ready(function(){
+                    // set function for determining and setting height.
+                    contentHeight = function() {
+                        // delcare and set vars.
+                        v
+2018-11-14 23:09:18.363 2234-2258/zandoh.com.polyview D/MYAPP: ar contentLoc, sidebarLoc, contentHt, sidebarHt;
+                        var contentLoc = up.jQuery('#portalPageBodyLayout');
+                        var sidebarLoc = up.jQuery('#portalSidebarInner');
+                        var contentHt = contentLoc.height();
+                        var sidebarHt = sidebarLoc.height();
+                        // compare and set height.
+                        if (contentHt > sidebarHt) {
+                            sidebarLoc.height(contentHt);
+                        }
+                    }
+            contentHeight();
+                });
+            </script></div></div><script type="text/javascript">
+                up.analytics = up.analytics || {};
+                up.analytics.host = 'idp.calpoly.edu';
+                up.analytics.portletData = {"3096_u17l1n1693_166308":{"fname":"PolyPlannerStatusPortlet","executionTimeNano":75931175},"35_u17l1n576_166308":{"fname":"AnnouncementsDisplay","executionTimeNano":199003674},"33_u17l1n1696_166308":{"fname":"myclasses","executionTimeNano":11333592},"62_u17l1n1739_16
+2018-11-14 23:09:18.363 2234-2258/zandoh.com.polyview D/MYAPP: 6308":{"fname":"directoryinfo","executionTimeNano":6356240},"50_u17l1n1746_166308":{"fname":"weather","executionTimeNano":4352296}};
+                up.analytics.pageData = {"urlState":"NORMAL","executionTimeNano":268295184,"tab":{"id":1,"fragmentName":"home-lo","tabName":"Home","displayString":"Home (home-lo)"}};
+            </script></body></html>

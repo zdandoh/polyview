@@ -43,10 +43,10 @@ class ComingUpActivity: Fragment() {
             holder?.assignment_details?.text = assignment.assignment_due
 
             val color = if(assignment.submitted) {
-                0x622008000.toInt()
+                0xB2228B22.toInt()
             }
             else {
-                0x62800000.toInt()
+                0xB2800000.toInt()
             }
 
             holder?.assignment_background?.setBackgroundColor(color)

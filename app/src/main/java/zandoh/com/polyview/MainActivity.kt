@@ -1,5 +1,6 @@
 package zandoh.com.polyview
 
+import android.arch.lifecycle.ViewModelProvider
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -17,9 +18,21 @@ import kotlinx.android.synthetic.main.nav_header_main.*
 import kotlinx.android.synthetic.main.nav_header_main.view.*
 import android.content.Intent
 import android.support.v4.app.Fragment
+import com.android.volley.toolbox.Volley
+import com.android.volley.toolbox.HttpClientStack
+import com.android.volley.toolbox.HttpStack
+import android.arch.lifecycle.ViewModelProviders;
+import android.util.Log
+import com.android.volley.RequestQueue
+import com.franmontiel.persistentcookiejar.PersistentCookieJar
+import com.franmontiel.persistentcookiejar.cache.SetCookieCache
+import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor
+import okhttp3.*
+import java.io.IOException
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -32,10 +45,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         nav_view.setNavigationItemSelectedListener(this)
 
-        supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment, CalendarActivity())
-                .commit()
+        val model = ViewModelProviders.of(this).get(PolylearnModel::class.java)
 
+        // Gathers class data from Poly Portal and prints it to the console
+        val provider = PolyDataProvider(this)
+        provider.polyLogin()
+
+        supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment, PolylearnActivity())
+                .commit()
     }
 
     override fun onBackPressed() {
