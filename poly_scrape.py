@@ -24,8 +24,8 @@ resp = sess.get(
 
 resp2 = sess.post(resp.url,
     data={
-        "j_username": "zdohnale",
-        "j_password": "***REMOVED***",
+        "j_username": "USERNAME",
+        "j_password": "PASSWORD",
         "_eventId_proceed": ""
     },
     headers={
