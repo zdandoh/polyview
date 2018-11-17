@@ -1,5 +1,6 @@
 package zandoh.com.polyview
 
+import android.util.Log
 import org.jsoup.Jsoup
 import org.jsoup.select.Elements
 
@@ -33,6 +34,9 @@ fun parseCategory(category: Elements): Category {
     var activities = category.select(".activity")
     for(activity in activities) {
         val activityLink = activity.select(".activityinstance").select("a")
+        if(activityLink.isEmpty()) {
+            continue
+        }
 
         val newItem = PolylearnItem(
                 activityLink.select(".instancename").first().ownText(),

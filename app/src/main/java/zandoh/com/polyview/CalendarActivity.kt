@@ -19,6 +19,12 @@ class CalendarActivity: Fragment() {
         cal_cell_1_1.setBackgroundColor(0x88008000.toInt())
         cal_cell_1_1.text = "CSC 349"
 
+        cal_cell_1_1.setOnClickListener {
+            fragmentManager?.beginTransaction()
+                    ?.replace(R.id.fragment, PolylearnActivity())
+                    ?.commit()
+        }
+
         cal_cell_3_12.setBackgroundColor(0x88008000.toInt())
         cal_cell_3_12.text = "Recruiting"
         cal_cell_3_13.setBackgroundColor(0x88008000.toInt())

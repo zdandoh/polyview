@@ -58,6 +58,15 @@ class ClassesActivity : Fragment() {
             var class_full_name: TextView? = null
             var class_location: TextView? = null
             init {
+                itemView?.setOnClickListener {
+                    val activity = it.context
+                    if(activity is MainActivity) {
+                        activity.supportFragmentManager.beginTransaction()
+                                .replace(R.id.fragment, PolylearnActivity())
+                                .commit()
+                    }
+                }
+
                 class_name = itemView?.findViewById(R.id.class_name)
                 class_full_name = itemView?.findViewById(R.id.class_full_name)
                 class_location = itemView?.findViewById(R.id.class_building)

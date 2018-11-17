@@ -34,8 +34,8 @@ class PolyDataProvider {
 
     fun postCredentials(url: String) {
         val body = FormBody.Builder()
-                .add("j_username", "zdohnale")
-                .add("j_password", "***REMOVED***")
+                .add("j_username", POLY_USERNAME)
+                .add("j_password", POLY_PASSWORD)
                 .add("_eventId_proceed", "")
                 .build()
 
@@ -101,13 +101,50 @@ class PolyDataProvider {
                         val classes = Gson().fromJson(returnedJSON, JSONClasses::class.java)
                         Log.d("MYJSON", classes.toString())
 
-                        getPolylearnData()
+                        getPolylearnLinks()
                     }
                 })
     }
 
-    fun getPolylearnData() {
+    fun getPolylearnLinks() {
+        val polylearn_url = "https://myportal.calpoly.edu/f/u17l1s6/p/myclasses.u17l1n1696/normal/moodleLinks.resource.uP?terms=2188"
 
+        val request = okhttp3.Request.Builder().url(polylearn_url).build()
+
+        client.newCall(request)
+                .enqueue(object: Callback {
+                    override fun onFailure(call: Call, e: IOException) {
+
+                    }
+
+                    override fun onResponse(call: Call, response: okhttp3.Response) {
+                        var returnedJson = response.body()?.string()
+
+                        val polyLearnLinks = Gson().fromJson(returnedJson, JSONMap::class.java)
+
+                        val firstLink = polyLearnLinks.map.values.first().url
+
+                        Log.d("MYJSON", firstLink)
+                        getPolylearnData(firstLink)
+                    }
+                })
+    }
+
+    fun getPolylearnData(url: String) {
+        val request = okhttp3.Request.Builder().url(url).build()
+
+        client.newCall(request)
+                .enqueue(object: Callback {
+                    override fun onFailure(call: Call, e: IOException) {
+
+                    }
+
+                    override fun onResponse(call: Call, response: okhttp3.Response) {
+                        val source = response.body()?.string()!!
+
+                        Log.d("MYJSON", parsePolylearn(source).toString())
+                    }
+                })
     }
 }
 
@@ -142,6 +179,10 @@ data class JSONSchedule(
         @SerializedName("facilityRoom")
         val room: String
 )
+
+data class JSONMap(val map: Map<String, JSONMapLink>)
+
+data class JSONMapLink(val url: String)
 
 data class PolyClass(val short_name: String, val full_name: String, val location: String)
 

@@ -62,6 +62,15 @@ class ComingUpActivity: Fragment() {
             var assignment_details: TextView? = null
             var assignment_background: View? = null
             init {
+                itemView?.setOnClickListener {
+                    val activity = it.context
+                    if(activity is MainActivity) {
+                        activity.supportFragmentManager.beginTransaction()
+                                .replace(R.id.fragment, PolylearnActivity())
+                                .commit()
+                    }
+                }
+
                 assignment_name = itemView?.findViewById(R.id.assignment_name)
                 assignment_details = itemView?.findViewById(R.id.assignment_details)
                 assignment_background = itemView?.findViewById(R.id.assignment_background)
