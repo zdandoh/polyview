@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableRow android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="15"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:id="@+id/time_tag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="2dp"
+        android:maxLines="4"
+        android:singleLine="false"
+        android:text="NA" />
+
+    <include
+        layout="@layout/calendar_cell"
+        android:id="@+id/cell-1"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="0.2"/>
+
+    <include
+        layout="@layout/calendar_cell"
+        android:id="@+id/cell-2"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="0.2"/>
+
+    <include
+        layout="@layout/calendar_cell"
+        android:id="@+id/cell-3"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="0.2"/>
+
+    <include
+        layout="@layout/calendar_cell"
+        android:id="@+id/cell-4"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="0.2"/>
+
+    <include
+        layout="@layout/calendar_cell"
+        android:id="@+id/cell-5"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="0.2"/>
+
+</TableRow>

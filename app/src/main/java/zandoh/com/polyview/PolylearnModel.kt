@@ -15,4 +15,12 @@ class PolylearnModel: ViewModel() {
         prefs.putString("classes", classesStr)
         prefs.apply()
     }
+
+    fun loadClasses(prefs: SharedPreferences) {
+        val classesJson = prefs.getString("classes", null)
+
+        if(classesJson != null) {
+            this.classes = Gson().fromJson(classesJson, JSONClasses::class.java)
+        }
+    }
 }

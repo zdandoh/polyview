@@ -45,9 +45,18 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         nav_view.setNavigationItemSelectedListener(this)
 
         val model = ViewModelProviders.of(this).get(PolylearnModel::class.java)
+        model.loadClasses(getPreferences(Context.MODE_PRIVATE))
+
+        val launchFrag: Fragment
+        if(model.classes == null) {
+            launchFrag = LoginActivity()
+        }
+        else {
+            launchFrag = ClassesActivity()
+        }
 
         supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment, LoginActivity())
+                .replace(R.id.fragment, launchFrag)
                 .commit()
     }
 
