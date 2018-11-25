@@ -1,12 +1,11 @@
 package zandoh.com.polyview;
 
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
+import android.content.Context.MODE_PRIVATE
+import android.os.Parcelable
+import android.support.v4.app.Fragment
 import android.util.Log
-import com.android.volley.Request
-import com.android.volley.RequestQueue
-import com.android.volley.Response
-import com.android.volley.toolbox.StringRequest
-import com.android.volley.toolbox.Volley
 import com.franmontiel.persistentcookiejar.PersistentCookieJar
 import com.franmontiel.persistentcookiejar.cache.SetCookieCache
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor
@@ -17,25 +16,32 @@ import okhttp3.Callback
 import okhttp3.FormBody
 import okhttp3.OkHttpClient
 import java.io.IOException
-import java.net.CookieHandler
-import java.net.CookieManager
+import kotlinx.android.parcel.Parcelize
+
 
 class PolyDataProvider {
     var client: OkHttpClient
-    var loggedIn = false
+    lateinit var callback: (()->Unit)
+    val fragment: Fragment
 
-    constructor(context: Context) {
+    constructor(context: Context, fragment: Fragment) {
         val cookieJar = PersistentCookieJar(SetCookieCache(), SharedPrefsCookiePersistor(context))
 
+        this.fragment = fragment
         client = OkHttpClient.Builder()
                 .cookieJar(cookieJar)
                 .build()
     }
 
-    fun postCredentials(url: String) {
+    fun collectData(username: String, password: String, callback: (()->Unit)) {
+        this.callback = callback
+        polyLogin(username, password)
+    }
+
+    private fun postCredentials(url: String, username: String, password: String) {
         val body = FormBody.Builder()
-                .add("j_username", POLY_USERNAME)
-                .add("j_password", POLY_PASSWORD)
+                .add("j_username", username)
+                .add("j_password", password)
                 .add("_eventId_proceed", "")
                 .build()
 
@@ -55,17 +61,16 @@ class PolyDataProvider {
         client.newCall(request)
                 .enqueue(object: Callback {
                     override fun onFailure(call: Call, e: IOException) {
-                        Log.d("MYAPP", "FAIL")
+                        Log.d("POLYHTTP", "LOGIN FAIL")
                     }
 
                     override fun onResponse(call: Call, response: okhttp3.Response) {
-                        loggedIn = true
                         getClassData()
                     }
                 })
     }
 
-    fun polyLogin() {
+    private fun polyLogin(username: String, password: String) {
         val first_url = "https://idp.calpoly.edu/idp/profile/cas/login?service=https://myportal.calpoly.edu/Login"
 
         val request = okhttp3.Request.Builder().url(first_url).build()
@@ -73,18 +78,17 @@ class PolyDataProvider {
         client.newCall(request)
                 .enqueue(object: Callback {
                     override fun onFailure(call: Call, e: IOException) {
-                        Log.d("MYAPP", e.toString())
-                        Log.d("MYAPP", "FAILED")
+                        Log.d("POLYHTTP", "PRE-LOGIN FAILED")
                     }
 
                     override fun onResponse(call: Call, response: okhttp3.Response) {
                         val post_url = response.request().url().toString()
-                        postCredentials(post_url)
+                        postCredentials(post_url, username, password)
                     }
                 })
     }
 
-    fun getClassData() {
+    private fun getClassData() {
         val data_url = "https://myportal.calpoly.edu/f/u17l1s6/p/myclasses.u17l1n1696/normal/getCurrentEnrollment.resource.uP"
 
         val request = okhttp3.Request.Builder().url(data_url).build()
@@ -92,21 +96,39 @@ class PolyDataProvider {
         client.newCall(request)
                 .enqueue(object: Callback {
                     override fun onFailure(call: Call, e: IOException) {
-                        Log.d("MYJSON", "NO DICE")
+                        Log.d("POLYHTTP", "CLASS DATA REQUEST FAILED")
                     }
 
                     override fun onResponse(call: Call, response: okhttp3.Response) {
                         var returnedJSON = response.body()?.string()!!
+                        response.body()?.close()
 
                         val classes = Gson().fromJson(returnedJSON, JSONClasses::class.java)
-                        Log.d("MYJSON", classes.toString())
 
-                        getPolylearnLinks()
+                        classes.items = classes.items.filter {
+                            !it.times.isEmpty()
+                        } as ArrayList<JSONClass>
+
+                        classes.items.sortBy {
+                            it.name
+                        }
+
+                        for(classItem in classes.items) {
+                            classItem.name = classItem.name.substring(0, classItem.name.lastIndexOf("-"))
+                            classItem.name = classItem.name.replaceFirst("-", " ")
+
+                            classItem.times[0].building = classItem.times[0].building.removePrefix("0")
+                            classItem.times[0].room = classItem.times[0].room.removePrefix("0")
+
+                            classItem.times[0].buildingName = classItem.times[0].buildingName.substring(0, classItem.times[0].buildingName.lastIndexOf(" "))
+                        }
+
+                        getPolylearnLinks(classes)
                     }
                 })
     }
 
-    fun getPolylearnLinks() {
+    private fun getPolylearnLinks(classData: JSONClasses) {
         val polylearn_url = "https://myportal.calpoly.edu/f/u17l1s6/p/myclasses.u17l1n1696/normal/moodleLinks.resource.uP?terms=2188"
 
         val request = okhttp3.Request.Builder().url(polylearn_url).build()
@@ -114,18 +136,29 @@ class PolyDataProvider {
         client.newCall(request)
                 .enqueue(object: Callback {
                     override fun onFailure(call: Call, e: IOException) {
-
+                        Log.d("POLYHTTP", "FAILED TO GET CLASS URLS")
                     }
 
                     override fun onResponse(call: Call, response: okhttp3.Response) {
                         var returnedJson = response.body()?.string()
+                        response.body()?.close()
 
                         val polyLearnLinks = Gson().fromJson(returnedJson, JSONMap::class.java)
 
-                        val firstLink = polyLearnLinks.map.values.first().url
+                        polyLearnLinks.map.keys.forEach {key ->
+                            for(classInfo in classData.items) {
+                                if(key.equals(classInfo.name)) {
+                                    classInfo.polylearnUrl = polyLearnLinks.map[key]!!.url
+                                }
+                            }
+                        }
 
-                        Log.d("MYJSON", firstLink)
-                        getPolylearnData(firstLink)
+                        val model = ViewModelProviders.of(fragment.activity!!).get(PolylearnModel::class.java)
+                        val prefs = fragment.activity!!.getPreferences(MODE_PRIVATE).edit()
+
+                        model.writeClasses(classData, prefs)
+                        callback.invoke()
+                        Log.d("POLYINFO", "LOGIN SUCCESSFUL")
                     }
                 })
     }
@@ -136,13 +169,15 @@ class PolyDataProvider {
         client.newCall(request)
                 .enqueue(object: Callback {
                     override fun onFailure(call: Call, e: IOException) {
-
+                        Log.d("POLYHTTP", "FAILED TO GET POLYLEARN DATA")
                     }
 
                     override fun onResponse(call: Call, response: okhttp3.Response) {
                         val source = response.body()?.string()!!
-
-                        Log.d("MYJSON", parsePolylearn(source).toString())
+                        response.body()?.close()
+                        val data = parsePolylearn(source)
+                        logLong(source)
+                        Log.d("MYDATA", data.toString())
                     }
                 })
     }
@@ -154,36 +189,45 @@ fun logLong(longStr: String) {
     }
 }
 
-data class JSONClasses(val items: ArrayList<JSONClass>, val term: Term)
+@Parcelize
+data class JSONClasses(
+        var items: ArrayList<JSONClass>,
+        val term: Term): Parcelable
 
+@Parcelize
 data class Term(
         @SerializedName("termCode")
         val code: String
-)
+): Parcelable
 
+@Parcelize
 data class JSONClass(
         @SerializedName("classLabel")
-        val name: String,
+        var name: String,
+        @SerializedName("componentCode")
+        val classType: String,
         @SerializedName("courseCatalogDescription")
         val longName: String,
         @SerializedName("meetingPatterns")
-        val times: ArrayList<JSONSchedule>
-)
+        val times: ArrayList<JSONSchedule>,
+        var polylearnUrl: String?
+): Parcelable
 
+@Parcelize
 data class JSONSchedule(
         val days: String,
         val startTime: String,
         val endTime: String,
         @SerializedName("facilityBuildingCode")
-        val building: String,
+        var building: String,
         @SerializedName("facilityRoom")
-        val room: String
-)
+        var room: String,
+        @SerializedName("facilityDescription")
+        var buildingName: String
+): Parcelable
 
 data class JSONMap(val map: Map<String, JSONMapLink>)
 
 data class JSONMapLink(val url: String)
-
-data class PolyClass(val short_name: String, val full_name: String, val location: String)
 
 data class PolyAssignment(val assignment_name: String, val assignment_due: String, val submitted: Boolean)
