@@ -12,6 +12,9 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import android.support.v4.app.Fragment
 import android.arch.lifecycle.ViewModelProviders;
+import android.os.Handler
+import android.support.v4.os.HandlerCompat.postDelayed
+import android.util.Log
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -30,7 +33,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         nav_view.setNavigationItemSelectedListener(this)
 
         val model = ViewModelProviders.of(this).get(PolylearnModel::class.java)
-        model.loadClasses(getPreferences(Context.MODE_PRIVATE))
+        model.load(getPreferences(Context.MODE_PRIVATE))
+
+        startDataUpdater()
 
         val launchFrag: Fragment
         if(model.classes == null) {
@@ -53,11 +58,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         return this.provider!!
     }
 
-    fun attemptDataRefresh() {
+    fun startDataUpdater() {
+        val handler = Handler()
+        val check_update_delay = 10000L
 
-    }
-
-    fun refreshPolylearnData() {
+        handler.postDelayed(object : Runnable {
+            override fun run() {
+                val provider = getDataProvider()
+                provider.checkForUpdate()
+                handler.postDelayed(this, check_update_delay)
+            }
+        }, check_update_delay)
 
     }
 

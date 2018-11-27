@@ -3,6 +3,8 @@ package zandoh.com.polyview;
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
+import android.os.Handler
+import android.os.Looper
 import android.os.Parcelable
 import android.support.v4.app.Fragment
 import android.util.Log
@@ -149,7 +151,7 @@ class PolyDataProvider {
                             for(classInfo in classData.items) {
                                 val keyParts = key.split("-")
                                 val classNameParts = classInfo.name.split(" ")
-                                if(keyParts[0].equals(classNameParts[0]) && "${keyParts[1]}-${keyParts[2]}".equals(classNameParts[1])) {
+                                if(keyParts[0].equals(classNameParts[0]) && keyParts[1].equals(classNameParts[1].split("-")[0])) {
                                     classInfo.polylearnUrl = polyLearnLinks.map[key]!!.url
                                 }
                             }
@@ -161,25 +163,50 @@ class PolyDataProvider {
                         model.writeClasses(classData, prefs)
                         callback.invoke()
                         Log.d("POLYINFO", "LOGIN SUCCESSFUL")
+
+                        val urlSet = HashSet<String>()
+                        for(classItem in classData.items) {
+                            if(classItem.polylearnUrl != null) {
+                                urlSet.add(classItem.polylearnUrl!!)
+                            }
+                        }
+
+                        getPolylearnData(urlSet)
                     }
                 })
     }
 
-    fun getPolylearnData(url: String) {
+    fun checkForUpdate() {
+
+    }
+
+    fun getPolylearnData(urls: HashSet<String>) {
+        if(urls.isEmpty()) {
+            return
+        }
+
+        val url = urls.first()
+        urls.remove(url)
         val request = okhttp3.Request.Builder().url(url).build()
 
         client.newCall(request)
                 .enqueue(object: Callback {
                     override fun onFailure(call: Call, e: IOException) {
                         Log.d("POLYHTTP", "FAILED TO GET POLYLEARN DATA")
+                        Log.d("POLYHTTP", e.message)
                     }
 
                     override fun onResponse(call: Call, response: okhttp3.Response) {
                         val source = response.body()?.string()!!
                         response.body()?.close()
                         val data = parsePolylearn(source)
-                        logLong(source)
+
+                        val model = ViewModelProviders.of(activity).get(PolylearnModel::class.java)
+                        val prefs = activity.getPreferences(MODE_PRIVATE).edit()
+                        model.writePolylearnData(url, data, prefs)
                         Log.d("MYDATA", data.toString())
+
+                        getPolylearnData(urls)
                     }
                 })
     }

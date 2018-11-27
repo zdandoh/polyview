@@ -45,11 +45,11 @@ class LoginActivity: Fragment() {
             editor?.apply()
 
             val provider = (activity as MainActivity).getDataProvider()
-            provider.collectData(email_text, password_text, {
+            provider.collectData(email_text, password_text) {
                 fragmentManager?.beginTransaction()
                         ?.replace(R.id.fragment, ClassesActivity())
                         ?.commit()
-            })
+            }
         }
     }
 }

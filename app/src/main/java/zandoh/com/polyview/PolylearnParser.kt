@@ -6,8 +6,8 @@ import kotlinx.android.parcel.Parcelize
 import org.jsoup.Jsoup
 import org.jsoup.select.Elements
 
-fun parsePolylearn(source: String): ArrayList<Category> {
-    val categories = arrayListOf<Category>()
+fun parsePolylearn(source: String): PolylearnData {
+    val data = PolylearnData()
 
     val doc = Jsoup.parse(source)
 
@@ -21,12 +21,12 @@ fun parsePolylearn(source: String): ArrayList<Category> {
             break
         }
         else {
-            categories.add(parseCategory(curr_category))
+            data.categories.add(parseCategory(curr_category))
         }
         category_no++
     }
 
-    return categories
+    return data
 }
 
 fun parseCategory(category: Elements): Category {
@@ -53,7 +53,40 @@ fun parseCategory(category: Elements): Category {
 }
 
 @Parcelize
+data class PolylearnDataHolder(val items: HashMap<String, PolylearnData> = HashMap()): Parcelable
+
+@Parcelize
+data class PolylearnData(var categories: ArrayList<Category> = arrayListOf(), var ctime: Long = System.currentTimeMillis() / 1000): Parcelable {
+    fun get(index: Int): Any? {
+
+        var currIndex = 0
+        for(category in categories) {
+            if(index == currIndex) {
+                return category
+            }
+
+
+            if(currIndex + category.items.size >= index) {
+                // The item we're looking for is in this category
+                return category.items[index - currIndex - 1]
+            }
+            else {
+                currIndex += category.items.size + 1
+            }
+        }
+
+        return null
+    }
+}
+
+
+
+@Parcelize
 data class Category(var title: String, val items: ArrayList<PolylearnItem>): Parcelable
 
 @Parcelize
-data class PolylearnItem(var title: String, var type: String, var description: String, var url: String): Parcelable
+data class PolylearnItem(
+        var title: String,
+        var type: String,
+        var description: String,
+        var url: String): Parcelable

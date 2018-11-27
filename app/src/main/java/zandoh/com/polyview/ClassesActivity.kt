@@ -48,9 +48,13 @@ class ClassesActivity : Fragment() {
             var class_name: TextView? = null
             var class_full_name: TextView? = null
             init {
+
                 itemView?.setOnClickListener {
                     val activity = it.context
                     if(activity is MainActivity) {
+                        val model = ViewModelProviders.of(activity).get(PolylearnModel::class.java)
+                        model.plDisplayClass = adapterPosition
+
                         activity.supportFragmentManager.beginTransaction()
                                 .replace(R.id.fragment, PolylearnActivity())
                                 .commit()

@@ -108,7 +108,7 @@ class CalendarActivity: Fragment() {
         }
 
         // Populate calendar
-        for(classItem in model.classes!!.items) {
+        for((index, classItem) in model.classes!!.items.withIndex()) {
             val times = classItem.times[0]
             // MTWRF
             for(dayNo in 1..5) {
@@ -124,6 +124,16 @@ class CalendarActivity: Fragment() {
 
                 while(currTime < endTime) {
                     val cellView = getCalendarTextView(day, currTime)
+
+                    cellView.setOnClickListener {
+                        val model = ViewModelProviders.of(activity!!).get(PolylearnModel::class.java)
+                        model.plDisplayClass = index
+
+                        fragmentManager?.beginTransaction()
+                                ?.replace(R.id.fragment, PolylearnActivity())
+                                ?.commit()
+                    }
+
                     cellView.setBackgroundColor(0x88008000.toInt())
                     if(labeled == 0) {
                         cellView.setText(" " + classItem.name.split("-")[0])
