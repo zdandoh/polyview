@@ -3,6 +3,8 @@ package zandoh.com.polyview;
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
+import android.content.Intent
+import android.net.Uri
 import android.os.Handler
 import android.os.Looper
 import android.os.Parcelable
@@ -19,6 +21,7 @@ import okhttp3.FormBody
 import okhttp3.OkHttpClient
 import java.io.IOException
 import kotlinx.android.parcel.Parcelize
+import java.util.regex.Pattern
 
 
 class PolyDataProvider {
@@ -40,7 +43,7 @@ class PolyDataProvider {
         polyLogin(username, password)
     }
 
-    private fun postCredentials(url: String, username: String, password: String) {
+    private fun postCredentials(url: String, username: String, password: String, refreshData: Boolean = true, loginCallback: (() -> Unit)? = null) {
         val body = FormBody.Builder()
                 .add("j_username", username)
                 .add("j_password", password)
@@ -67,12 +70,18 @@ class PolyDataProvider {
                     }
 
                     override fun onResponse(call: Call, response: okhttp3.Response) {
-                        getClassData()
+                        if(refreshData) {
+                            getClassData()
+                        }
+
+                        if(loginCallback != null) {
+                            loginCallback.invoke()
+                        }
                     }
                 })
     }
 
-    private fun polyLogin(username: String, password: String) {
+    private fun polyLogin(username: String, password: String, refreshData: Boolean = true, loginCallback: (() -> Unit)? = null) {
         val first_url = "https://idp.calpoly.edu/idp/profile/cas/login?service=https://myportal.calpoly.edu/Login"
 
         val request = okhttp3.Request.Builder().url(first_url).build()
@@ -85,7 +94,7 @@ class PolyDataProvider {
 
                     override fun onResponse(call: Call, response: okhttp3.Response) {
                         val post_url = response.request().url().toString()
-                        postCredentials(post_url, username, password)
+                        postCredentials(post_url, username, password, refreshData=refreshData, loginCallback = loginCallback)
                     }
                 })
     }
@@ -207,6 +216,48 @@ class PolyDataProvider {
                         Log.d("MYDATA", data.toString())
 
                         getPolylearnData(urls)
+                    }
+                })
+    }
+
+    fun openActualUrl(url: String, username: String, password: String, finishCallback: () -> Unit) {
+
+        polyLogin(username, password, refreshData = false, loginCallback = {
+            openPLUrl(url, finishCallback)
+        })
+    }
+
+    fun openPLUrl(url: String, finishCallback: () -> Unit) {
+        Log.d("POLYINFO", "OPENING URL $url")
+        val request = okhttp3.Request.Builder().url(url).build()
+
+        client.newCall(request)
+                .enqueue(object: Callback {
+                    override fun onFailure(call: Call, e: IOException) {
+                        Log.d("POLYHTTP", "FAILED TO GET POLYLEARN URL")
+                    }
+
+                    override fun onResponse(call: Call, response: okhttp3.Response) {
+                        val source = response.body()?.string()!!
+                        response.body()?.close()
+
+                        val pattern = Pattern.compile("Click <a href=\"(.+)\" onclick=\"this\\.target=")
+                        val matcher = pattern.matcher(source)
+
+                        matcher.find()
+
+                        val spawnUrl: String
+                        if(matcher.hitEnd()) {
+                            spawnUrl = url
+                        }
+                        else {
+                            spawnUrl = matcher.group(1)
+                        }
+
+                        activity.runOnUiThread(finishCallback)
+
+                        val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(spawnUrl))
+                        activity.startActivity(browserIntent)
                     }
                 })
     }

@@ -12,6 +12,7 @@ import android.text.Selection.getSelectionEnd
 import android.text.Selection.getSelectionStart
 import android.content.Context.MODE_PRIVATE
 import android.R.id.edit
+import android.arch.lifecycle.ViewModelProviders
 import android.content.SharedPreferences
 import android.os.Handler
 import android.transition.Visibility
@@ -40,9 +41,13 @@ class LoginActivity: Fragment() {
             val password_text = password.text.toString()
 
             val editor = activity?.getPreferences(MODE_PRIVATE)?.edit()
-            editor?.putString("email", email_text)
+            editor?.putString("username", email_text)
             editor?.putString("password", password_text)
             editor?.apply()
+
+            val model = ViewModelProviders.of(it.context as MainActivity).get(PolylearnModel::class.java)
+            model.username = email_text
+            model.password = password_text
 
             val provider = (activity as MainActivity).getDataProvider()
             provider.collectData(email_text, password_text) {
