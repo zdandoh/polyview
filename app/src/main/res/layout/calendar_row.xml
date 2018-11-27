@@ -7,19 +7,20 @@
     <TextView
         android:id="@+id/time_tag"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_marginLeft="3dp"
-        android:layout_marginRight="2dp"
         android:maxLines="4"
         android:singleLine="false"
+        android:drawableBottom="@drawable/line_horizontal"
+        android:maxWidth="45dp"
         android:text="NA" />
 
     <include
-        layout="@layout/calendar_cell"
         android:id="@+id/cell-1"
+        layout="@layout/calendar_cell"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_weight="0.2"/>
+        android:layout_weight="0.2" />
 
     <include
         layout="@layout/calendar_cell"

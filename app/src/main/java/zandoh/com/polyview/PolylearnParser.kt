@@ -1,6 +1,8 @@
 package zandoh.com.polyview
 
+import android.os.Parcelable
 import android.util.Log
+import kotlinx.android.parcel.Parcelize
 import org.jsoup.Jsoup
 import org.jsoup.select.Elements
 
@@ -50,6 +52,8 @@ fun parseCategory(category: Elements): Category {
     return newCat
 }
 
-data class Category(var title: String, val items: ArrayList<PolylearnItem>)
+@Parcelize
+data class Category(var title: String, val items: ArrayList<PolylearnItem>): Parcelable
 
-data class PolylearnItem(var title: String, var type: String, var description: String, var url: String)
+@Parcelize
+data class PolylearnItem(var title: String, var type: String, var description: String, var url: String): Parcelable

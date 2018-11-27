@@ -19,8 +19,6 @@ import android.util.Log
 import android.support.v4.os.HandlerCompat.postDelayed
 
 
-
-
 class LoginActivity: Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.activity_login, container, false)
@@ -46,7 +44,7 @@ class LoginActivity: Fragment() {
             editor?.putString("password", password_text)
             editor?.apply()
 
-            val provider = PolyDataProvider(it.context, this)
+            val provider = (activity as MainActivity).getDataProvider()
             provider.collectData(email_text, password_text, {
                 fragmentManager?.beginTransaction()
                         ?.replace(R.id.fragment, ClassesActivity())

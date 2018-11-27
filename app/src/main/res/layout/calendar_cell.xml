@@ -9,26 +9,25 @@
         android:id="@+id/upper"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="1dp"
-        android:paddingLeft="2dp"
         android:includeFontPadding="false"
         android:lineSpacingExtra="0dp"
         android:layout_weight="0.5"
         android:maxLines="4"
         android:singleLine="false"
+        android:drawableLeft="@drawable/line_vertical"
         android:textColor="@android:color/white"/>
 
     <TextView
         android:id="@+id/lower"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="1dp"
-        android:paddingLeft="2dp"
         android:includeFontPadding="false"
         android:lineSpacingExtra="0dp"
         android:layout_weight="0.5"
         android:maxLines="4"
         android:singleLine="false"
+        android:drawableBottom="@drawable/line_horizontal"
+        android:drawableLeft="@drawable/line_vertical"
         android:textColor="@android:color/white"/>
 
 </LinearLayout>

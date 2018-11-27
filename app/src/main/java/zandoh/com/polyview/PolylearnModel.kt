@@ -7,6 +7,7 @@ import com.google.gson.Gson
 
 class PolylearnModel: ViewModel() {
     var classes: JSONClasses? = null
+    var plDisplayClass = -1
 
     fun writeClasses(newClasses: JSONClasses, prefs: SharedPreferences.Editor) {
         this.classes = newClasses

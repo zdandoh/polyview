@@ -22,12 +22,12 @@ import kotlinx.android.parcel.Parcelize
 class PolyDataProvider {
     var client: OkHttpClient
     lateinit var callback: (()->Unit)
-    val fragment: Fragment
+    val activity: MainActivity
 
-    constructor(context: Context, fragment: Fragment) {
+    constructor(context: Context, activity: MainActivity) {
         val cookieJar = PersistentCookieJar(SetCookieCache(), SharedPrefsCookiePersistor(context))
 
-        this.fragment = fragment
+        this.activity = activity
         client = OkHttpClient.Builder()
                 .cookieJar(cookieJar)
                 .build()
@@ -147,14 +147,16 @@ class PolyDataProvider {
 
                         polyLearnLinks.map.keys.forEach {key ->
                             for(classInfo in classData.items) {
-                                if(key.equals(classInfo.name)) {
+                                val keyParts = key.split("-")
+                                val classNameParts = classInfo.name.split(" ")
+                                if(keyParts[0].equals(classNameParts[0]) && "${keyParts[1]}-${keyParts[2]}".equals(classNameParts[1])) {
                                     classInfo.polylearnUrl = polyLearnLinks.map[key]!!.url
                                 }
                             }
                         }
 
-                        val model = ViewModelProviders.of(fragment.activity!!).get(PolylearnModel::class.java)
-                        val prefs = fragment.activity!!.getPreferences(MODE_PRIVATE).edit()
+                        val model = ViewModelProviders.of(activity).get(PolylearnModel::class.java)
+                        val prefs = activity.getPreferences(MODE_PRIVATE).edit()
 
                         model.writeClasses(classData, prefs)
                         callback.invoke()
@@ -210,7 +212,8 @@ data class JSONClass(
         val longName: String,
         @SerializedName("meetingPatterns")
         val times: ArrayList<JSONSchedule>,
-        var polylearnUrl: String?
+        var polylearnUrl: String?,
+        var polylearnData: ArrayList<Category>?
 ): Parcelable
 
 @Parcelize

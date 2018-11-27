@@ -3,7 +3,10 @@ package zandoh.com.polyview
 import android.app.ActionBar
 import android.arch.lifecycle.ViewModelProviders
 import android.graphics.Color
+import android.graphics.ColorFilter
+import android.graphics.PorterDuff
 import android.os.Bundle
+import android.provider.CalendarContract
 import android.support.v4.app.Fragment
 import android.system.Os.bind
 import android.util.Log
@@ -17,7 +20,7 @@ import kotlinx.android.synthetic.main.calendar_cell.view.*
 import kotlinx.android.synthetic.main.calendar_row.view.*
 import kotlinx.android.synthetic.main.content_main.*
 import android.widget.LinearLayout
-
+import org.w3c.dom.Text
 
 
 class CalendarActivity: Fragment() {
@@ -28,7 +31,7 @@ class CalendarActivity: Fragment() {
     }
 
     fun getCalendarCell(row: Int, col: Int): View {
-        val rowView = calendar_table.getChildAt(row * 2)
+        val rowView = calendar_table.getChildAt(row)
         return (rowView as TableRow).getChildAt(col)
     }
 
@@ -46,11 +49,20 @@ class CalendarActivity: Fragment() {
         return getCalendarCell(row, col)
     }
 
+    fun getCalendarTextView(day: String, time: Int): TextView {
+        val cell = getCalendarCell(day, time)
+
+        if(time % 60 == 30) {
+            return cell.lower
+        }
+        return cell.upper
+    }
+
     fun timeToInt(time: String): Int {
         // Takes a string like "3:10 PM" and converts it to an int representing the minutes since 7 AM
         val timeParts = time.split(":")
         var hour = timeParts[0].toInt()
-        val minute = timeParts[1].split(" ")[0].toInt()
+        var minute = timeParts[1].split(" ")[0].toInt()
         val hasPm = time.lastIndexOf("PM") != -1
 
         var timeInt = 0
@@ -66,6 +78,10 @@ class CalendarActivity: Fragment() {
         }
 
         timeInt += hour * 60
+
+        if(minute == 10 || minute == 40) {
+            minute -= 10
+        }
         timeInt += minute
 
         return timeInt
@@ -87,7 +103,8 @@ class CalendarActivity: Fragment() {
                 text = "PM"
             }
 
-            (getCalendarCell(i, 0) as TextView).setText("$hour $text")
+            val labelCell = getCalendarCell(i, 0) as TextView
+            labelCell.setText("$hour $text")
         }
 
         // Populate calendar
@@ -95,7 +112,7 @@ class CalendarActivity: Fragment() {
             val times = classItem.times[0]
             // MTWRF
             for(dayNo in 1..5) {
-                var labeled = false
+                var labeled = 0
                 if(!times.days.contains(dayArr[dayNo])) {
                     // This class does not occur on this day
                     continue
@@ -104,23 +121,33 @@ class CalendarActivity: Fragment() {
                 val day = dayArr[dayNo]
                 var currTime = timeToInt(times.startTime)
                 val endTime = timeToInt(times.endTime)
-                Log.d("POLYINFO", "$currTime, $endTime")
+
                 while(currTime < endTime) {
-                    val cell = getCalendarCell(day, currTime)
-                    cell.upper.setBackgroundColor(0x88008000.toInt())
-                    if(!labeled) {
-                        labeled = true
-                        cell.upper.setText(classItem.name.split("-")[0])
-                        if(classItem.classType == "LAB") {
-                            cell.lower.setText("LAB")
-                        }
+                    val cellView = getCalendarTextView(day, currTime)
+                    cellView.setBackgroundColor(0x88008000.toInt())
+                    if(labeled == 0) {
+                        cellView.setText(" " + classItem.name.split("-")[0])
                     }
+                    if(labeled == 1 && classItem.classType == "LAB") {
+                        cellView.setText(" LAB")
+                    }
+                    labeled++
 
+                    val drawable = cellView.compoundDrawables.get(3)
                     if(currTime + 30 < endTime) {
-                        cell.lower.setBackgroundColor(0x88008000.toInt())
+                        drawable?.setColorFilter(resources.getColor(R.color.calendarColor), PorterDuff.Mode.CLEAR)
                     }
 
-                    currTime += 60
+                    if(currTime + 30 == endTime && drawable == null) {
+                        cellView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.line_vertical, 0, 0, R.drawable.line_horizontal)
+//                        cellView.setBackgroundColor(Color.RED)
+                    }
+//                    else {
+//                        Log.d("POLYINFO", (cell.lower as TextView).compoundDrawables.get(3).toString())
+//                        (cell.lower as TextView).compoundDrawables.get(3).setColorFilter(resources.getColor(R.color.calendarColor), PorterDuff.Mode.CLEAR)
+//                    }
+
+                    currTime += 30
                 }
             }
         }
