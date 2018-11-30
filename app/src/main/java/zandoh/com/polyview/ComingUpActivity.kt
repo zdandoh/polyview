@@ -1,6 +1,9 @@
 package zandoh.com.polyview
 
+import android.arch.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -13,6 +16,34 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_classes.*
 import kotlinx.android.synthetic.main.activity_comingup.*
 import java.util.*
+import kotlin.collections.ArrayList
+
+fun timestampToDuration(timestamp: Long): String {
+    var secondsLeft = timestamp - System.currentTimeMillis() / 1000
+
+    val days = secondsLeft / (3600 * 24)
+    secondsLeft -= days * (3600 * 24)
+
+    val hours = secondsLeft / (3600)
+    secondsLeft -= hours * 3600
+
+    val minutes = secondsLeft / 60
+
+    var result = ""
+    if(days > 0) {
+        result += "$days days "
+    }
+    if(hours > 0) {
+        result += "$hours hours "
+    }
+
+    if(result.length > 0) {
+        result += "and "
+    }
+    result += "$minutes minutes"
+
+    return "due in $result"
+}
 
 class ComingUpActivity: Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -22,12 +53,11 @@ class ComingUpActivity: Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        val model = ViewModelProviders.of(activity!!).get(PolylearnModel::class.java)
+        model.tempAssignments = model.assignments.items.filter { it.due > System.currentTimeMillis() / 1000 } as ArrayList<PolyAssignment>
+
         comingup_list.layoutManager = LinearLayoutManager(activity)
-        comingup_list.adapter = ComingUpActivity.AssignmentAdapter(Arrays.asList(
-                PolyAssignment("Project 3", "CPE 357 | due in 9 hours", false),
-                PolyAssignment("Milestone 2", "CSC 436 | due in 2 days", true),
-                PolyAssignment("Quiz 3", "CSC 300 | due in 5 days", false)
-        ))
+        comingup_list.adapter = ComingUpActivity.AssignmentAdapter(model.tempAssignments)
     }
 
     class AssignmentAdapter(private val assignments: List<PolyAssignment>): RecyclerView.Adapter<AssignmentAdapter.ViewHolder>() {
@@ -37,10 +67,10 @@ class ComingUpActivity: Fragment() {
         }
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-            val assignment = assignments[position];
+            val assignment = assignments[position]
 
-            holder?.assignment_name?.text = assignment.assignment_name
-            holder?.assignment_details?.text = assignment.assignment_due
+            holder?.assignment_name?.text = assignment.name
+            holder?.assignment_details?.text = timestampToDuration(assignment.due)
 
             val color = if(assignment.submitted) {
                 0xB2228B22.toInt()
@@ -65,9 +95,11 @@ class ComingUpActivity: Fragment() {
                 itemView?.setOnClickListener {
                     val activity = it.context
                     if(activity is MainActivity) {
-                        activity.supportFragmentManager.beginTransaction()
-                                .replace(R.id.fragment, PolylearnActivity())
-                                .commit()
+                        val model = ViewModelProviders.of(activity).get(PolylearnModel::class.java)
+
+                        val assignment = model.tempAssignments[adapterPosition]
+                        val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(assignment.url))
+                        activity.startActivity(browserIntent)
                     }
                 }
 

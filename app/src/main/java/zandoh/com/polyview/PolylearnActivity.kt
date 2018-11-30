@@ -20,12 +20,13 @@ import android.widget.RelativeLayout
 import java.io.File
 
 
-enum class FileTypes(name: String) {
-    Folder("Folder"),
-    URL("URL"),
-    Forum("Forum"),
-    File("File"),
-    Assignment("Assignment")
+enum class FileTypes {
+    FOLDER,
+    URL,
+    FORUM,
+    FILE,
+    ASSIGNMENT,
+    QUIZ,
 }
 
 fun getPolyData(model: PolylearnModel): PolylearnData {
@@ -87,13 +88,18 @@ class PolylearnActivity: Fragment() {
                     holder as ViewHolder
 
                     Log.d("POLYINFO", item.type)
+                    Log.d("POLYINFO", FileTypes.values().toString())
 
                     when(item.type) {
                         FileTypes.URL.name -> holder.icon?.setImageResource(R.drawable.link_icon)
-                        FileTypes.Folder.name -> holder.icon?.setImageResource(R.drawable.folder_icon)
-                        FileTypes.File.name -> holder.icon?.setImageResource(R.drawable.file_icon)
-                        FileTypes.Forum.name -> holder.icon?.setImageResource(R.drawable.forum_icon)
-                        FileTypes.Assignment.name -> holder.icon?.setImageResource(R.drawable.assignment_icon)
+                        FileTypes.FOLDER.name -> holder.icon?.setImageResource(R.drawable.folder_icon)
+                        FileTypes.FILE.name -> holder.icon?.setImageResource(R.drawable.file_icon)
+                        FileTypes.FORUM.name -> holder.icon?.setImageResource(R.drawable.forum_icon)
+                        FileTypes.ASSIGNMENT.name -> holder.icon?.setImageResource(R.drawable.assignment_icon)
+                        FileTypes.QUIZ.name -> holder.icon?.setImageResource(R.drawable.quiz_icon)
+                        else -> {
+                            holder.icon?.setImageResource(R.drawable.unknown_icon)
+                        }
                     }
                     holder.name?.text = item.title
 
@@ -131,7 +137,7 @@ class PolylearnActivity: Fragment() {
 
                     val activity = itemView.context as MainActivity
 
-                    if(item.type == FileTypes.File.name || item.type == FileTypes.URL.name) {
+                    if(item.type == FileTypes.FILE.name || item.type == FileTypes.URL.name) {
                         progressBar!!.visibility = View.VISIBLE
                         icon!!.visibility = View.INVISIBLE
 

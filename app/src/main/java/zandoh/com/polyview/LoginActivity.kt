@@ -1,23 +1,13 @@
 package zandoh.com.polyview
 
-import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_login.view.*
-import android.text.Selection.getSelectionEnd
-import android.text.Selection.getSelectionStart
 import android.content.Context.MODE_PRIVATE
-import android.R.id.edit
 import android.arch.lifecycle.ViewModelProviders
-import android.content.SharedPreferences
-import android.os.Handler
-import android.transition.Visibility
-import android.util.Log
-import android.support.v4.os.HandlerCompat.postDelayed
 
 
 class LoginActivity: Fragment() {

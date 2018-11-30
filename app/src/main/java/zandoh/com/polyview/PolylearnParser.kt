@@ -46,6 +46,16 @@ fun parseCategory(category: Elements): Category {
                 "",
                 activityLink.attr("href")
         )
+
+        if(newItem.type == "") {
+            val activityName = activityLink.select("img").attr("src").split("/").reversed()[2]
+            Log.d("POLYINFO", activityName)
+            newItem.type = activityName
+        }
+
+        newItem.type = newItem.type.toUpperCase()
+
+
         newCat.items.add(newItem)
     }
 

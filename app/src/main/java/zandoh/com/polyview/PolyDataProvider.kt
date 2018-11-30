@@ -10,18 +10,19 @@ import android.os.Looper
 import android.os.Parcelable
 import android.support.v4.app.Fragment
 import android.util.Log
+import android.widget.Toast
 import com.franmontiel.persistentcookiejar.PersistentCookieJar
 import com.franmontiel.persistentcookiejar.cache.SetCookieCache
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor
 import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
-import okhttp3.Call
-import okhttp3.Callback
-import okhttp3.FormBody
-import okhttp3.OkHttpClient
 import java.io.IOException
 import kotlinx.android.parcel.Parcelize
+import okhttp3.*
+import java.text.SimpleDateFormat
+import java.util.*
 import java.util.regex.Pattern
+import kotlin.collections.ArrayList
 
 
 class PolyDataProvider {
@@ -180,6 +181,7 @@ class PolyDataProvider {
                             }
                         }
 
+                        model.assignments.items.clear()
                         getPolylearnData(urlSet)
                     }
                 })
@@ -210,6 +212,8 @@ class PolyDataProvider {
                         response.body()?.close()
                         val data = parsePolylearn(source)
 
+                        getAssignments(data)
+
                         val model = ViewModelProviders.of(activity).get(PolylearnModel::class.java)
                         val prefs = activity.getPreferences(MODE_PRIVATE).edit()
                         model.writePolylearnData(url, data, prefs)
@@ -218,6 +222,69 @@ class PolyDataProvider {
                         getPolylearnData(urls)
                     }
                 })
+    }
+
+    fun getAssignments(data: PolylearnData) {
+        for(cat in data.categories) {
+            for(item in cat.items) {
+                if(item.type == FileTypes.ASSIGNMENT.name) {
+                    getAssignment(item)
+                }
+            }
+        }
+    }
+
+    fun getAssignment(item: PolylearnItem) {
+        val request = okhttp3.Request.Builder().url(item.url).build()
+
+        client.newCall(request)
+                .enqueue(object: Callback {
+                    override fun onFailure(call: Call, e: IOException) {
+                        Log.d("POLYHTTP", "FAILED TO DOWNLOAD ACTIVITY")
+                    }
+
+                    override fun onResponse(call: Call, response: Response) {
+                        val source = response.body()?.string()!!
+                        response.body()?.close()
+
+                        val newAssignment = parseAssignmentInfo(item, source)
+
+                        val model = ViewModelProviders.of(activity).get(PolylearnModel::class.java)
+                        val prefs = activity.getPreferences(MODE_PRIVATE).edit()
+                        model.writeAssignment(newAssignment, prefs)
+
+                        Log.d("ASSIGN", newAssignment.toString())
+                    }
+                })
+    }
+
+    fun parseAssignmentInfo(item: PolylearnItem, source: String): PolyAssignment {
+        var pattern = Pattern.compile("Due date<\\/td>\\n<td.+>(.+)<\\/td>")
+        var matcher = pattern.matcher(source)
+        matcher.find()
+        val timeString = matcher.group(1)
+
+        val sdf = SimpleDateFormat("EEEE, MMMM dd, yyyy, hh:mm aa", Locale.US)
+        val timestamp = sdf.parse(timeString).time / 1000
+
+        pattern = Pattern.compile("Submission status<\\/td>\\n<td class.+>(.+)<\\/td>")
+        matcher = pattern.matcher(source)
+        matcher.find()
+        val attemptString = matcher.group(1)
+        var attempted = true
+        if(attemptString == "No attempt") {
+            attempted = false
+        }
+
+        var newAssignment = PolyAssignment(
+                item.title,
+                timestamp,
+                attempted,
+                item.url
+
+                )
+
+        return newAssignment
     }
 
     fun openActualUrl(url: String, username: String, password: String, finishCallback: () -> Unit) {
@@ -235,6 +302,10 @@ class PolyDataProvider {
                 .enqueue(object: Callback {
                     override fun onFailure(call: Call, e: IOException) {
                         Log.d("POLYHTTP", "FAILED TO GET POLYLEARN URL")
+                        activity.runOnUiThread(finishCallback)
+                        activity.runOnUiThread {
+                            Toast.makeText(activity, "Failed to access resource", Toast.LENGTH_LONG).show()
+                        }
                     }
 
                     override fun onResponse(call: Call, response: okhttp3.Response) {
@@ -280,6 +351,15 @@ data class Term(
         val code: String
 ): Parcelable
 
+data class PolyAssignmentHolder(var items: ArrayList<PolyAssignment> = arrayListOf())
+
+data class PolyAssignment(
+        var name: String,
+        var due: Long,
+        var submitted: Boolean,
+        var url: String
+)
+
 @Parcelize
 data class JSONClass(
         @SerializedName("classLabel")
@@ -310,5 +390,3 @@ data class JSONSchedule(
 data class JSONMap(val map: Map<String, JSONMapLink>)
 
 data class JSONMapLink(val url: String)
-
-data class PolyAssignment(val assignment_name: String, val assignment_due: String, val submitted: Boolean)

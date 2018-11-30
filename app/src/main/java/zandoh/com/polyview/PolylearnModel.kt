@@ -9,6 +9,8 @@ import java.net.URL
 class PolylearnModel: ViewModel() {
     var classes: JSONClasses? = null
     var polylearnData: PolylearnDataHolder = PolylearnDataHolder()
+    var assignments: PolyAssignmentHolder = PolyAssignmentHolder()
+    var tempAssignments: ArrayList<PolyAssignment> = arrayListOf()
     var plDisplayClass = -1
     var username: String? = null
     var password: String? = null
@@ -35,6 +37,11 @@ class PolylearnModel: ViewModel() {
 
         this.username = prefs.getString("username", null)
         this.password = prefs.getString("password", null)
+
+        val assignmentsJson = prefs.getString("assignments", null)
+        if(assignmentsJson != null) {
+            this.assignments = Gson().fromJson(assignmentsJson, PolyAssignmentHolder::class.java)
+        }
     }
 
     fun writePolylearnData(url: String, data: PolylearnData, prefs: SharedPreferences.Editor) {
@@ -42,6 +49,15 @@ class PolylearnModel: ViewModel() {
 
         val dataStr = Gson().toJson(polylearnData)
         prefs.putString("polylearn_data", dataStr)
+        prefs.apply()
+    }
+
+    fun writeAssignment(assignment: PolyAssignment, prefs: SharedPreferences.Editor) {
+        assignments.items.add(assignment)
+        assignments.items.sortBy { it.due }
+
+        val dataStr = Gson().toJson(assignments)
+        prefs.putString("assignments", dataStr)
         prefs.apply()
     }
 }
