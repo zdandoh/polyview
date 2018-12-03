@@ -33,8 +33,6 @@ class ClassesActivity : Fragment() {
         }
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-            Log.d("POLYINFO", classes[position].toString())
-
             val times = classes[position].times[0]
             holder?.class_name?.text = classes[position].name + (if(classes[position].classType == "LAB") " LAB" else "")
             holder?.class_full_name?.text = "${classes[position].longName} in ${times.building}-${times.room} (${times.buildingName})"

@@ -150,12 +150,7 @@ class CalendarActivity: Fragment() {
 
                     if(currTime + 30 == endTime && drawable == null) {
                         cellView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.line_vertical, 0, 0, R.drawable.line_horizontal)
-//                        cellView.setBackgroundColor(Color.RED)
                     }
-//                    else {
-//                        Log.d("POLYINFO", (cell.lower as TextView).compoundDrawables.get(3).toString())
-//                        (cell.lower as TextView).compoundDrawables.get(3).setColorFilter(resources.getColor(R.color.calendarColor), PorterDuff.Mode.CLEAR)
-//                    }
 
                     currTime += 30
                 }

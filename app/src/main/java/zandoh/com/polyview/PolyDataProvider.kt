@@ -121,6 +121,10 @@ class PolyDataProvider {
                             !it.times.isEmpty()
                         } as ArrayList<JSONClass>
 
+                        classes.items = classes.items.filter {
+                            it.enrollmentStatus.statusCode != "D"
+                        } as ArrayList<JSONClass>
+
                         classes.items.sortBy {
                             it.name
                         }
@@ -217,7 +221,6 @@ class PolyDataProvider {
                         val model = ViewModelProviders.of(activity).get(PolylearnModel::class.java)
                         val prefs = activity.getPreferences(MODE_PRIVATE).edit()
                         model.writePolylearnData(url, data, prefs)
-                        Log.d("MYDATA", data.toString())
 
                         getPolylearnData(urls)
                     }
@@ -248,20 +251,25 @@ class PolyDataProvider {
                         response.body()?.close()
 
                         val newAssignment = parseAssignmentInfo(item, source)
+                        if(newAssignment == null) {
+                            return
+                        }
 
                         val model = ViewModelProviders.of(activity).get(PolylearnModel::class.java)
                         val prefs = activity.getPreferences(MODE_PRIVATE).edit()
                         model.writeAssignment(newAssignment, prefs)
-
-                        Log.d("ASSIGN", newAssignment.toString())
                     }
                 })
     }
 
-    fun parseAssignmentInfo(item: PolylearnItem, source: String): PolyAssignment {
+    fun parseAssignmentInfo(item: PolylearnItem, source: String): PolyAssignment? {
         var pattern = Pattern.compile("Due date<\\/td>\\n<td.+>(.+)<\\/td>")
         var matcher = pattern.matcher(source)
         matcher.find()
+
+        if(matcher.hitEnd()) {
+            return null
+        }
         val timeString = matcher.group(1)
 
         val sdf = SimpleDateFormat("EEEE, MMMM dd, yyyy, hh:mm aa", Locale.US)
@@ -370,8 +378,14 @@ data class JSONClass(
         val longName: String,
         @SerializedName("meetingPatterns")
         val times: ArrayList<JSONSchedule>,
+        val enrollmentStatus: JSONEnrollmentStatus,
         var polylearnUrl: String?,
         var polylearnData: ArrayList<Category>?
+): Parcelable
+
+@Parcelize
+data class JSONEnrollmentStatus(
+        val statusCode: String
 ): Parcelable
 
 @Parcelize

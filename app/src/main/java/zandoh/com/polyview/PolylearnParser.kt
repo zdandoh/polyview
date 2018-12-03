@@ -49,7 +49,6 @@ fun parseCategory(category: Elements): Category {
 
         if(newItem.type == "") {
             val activityName = activityLink.select("img").attr("src").split("/").reversed()[2]
-            Log.d("POLYINFO", activityName)
             newItem.type = activityName
         }
 

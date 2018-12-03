@@ -14,7 +14,10 @@ import android.support.v4.app.Fragment
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Handler
 import android.support.v4.os.HandlerCompat.postDelayed
+import android.support.v4.widget.DrawerLayout
 import android.util.Log
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -36,6 +39,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         model.load(getPreferences(Context.MODE_PRIVATE))
 
         startDataUpdater()
+
+        val spinAnim = AnimationUtils.loadAnimation(this, R.anim.spin_anim)
+        refresh_button.startAnimation(spinAnim)
+        refresh_button.setOnClickListener {
+            refresh_button.clearAnimation()
+        }
 
         val launchFrag: Fragment
         if(model.classes == null) {
@@ -84,16 +93,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.main, menu)
         return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        when (item.itemId) {
-            R.id.action_settings -> return true
-            else -> return super.onOptionsItemSelected(item)
-        }
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {

@@ -8,6 +8,9 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.activity_login.*
 import android.content.Context.MODE_PRIVATE
 import android.arch.lifecycle.ViewModelProviders
+import android.support.v4.widget.DrawerLayout
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.app_bar_main.*
 
 
 class LoginActivity: Fragment() {

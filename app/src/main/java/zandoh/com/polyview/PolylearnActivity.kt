@@ -48,7 +48,6 @@ class PolylearnActivity: Fragment() {
 
         val classData = model.classes!!.items.get(model.plDisplayClass)
         val polyData = getPolyData(model)
-        Log.d("POLYINFO", polyData.toString())
 
         polylearn_list.layoutManager = LinearLayoutManager(activity)
         polylearn_list.adapter = PolylearnActivity.PolylearnAdapter(polyData!!)
@@ -86,9 +85,6 @@ class PolylearnActivity: Fragment() {
                 2 -> {
                     val item = polyData.get(position) as PolylearnItem
                     holder as ViewHolder
-
-                    Log.d("POLYINFO", item.type)
-                    Log.d("POLYINFO", FileTypes.values().toString())
 
                     when(item.type) {
                         FileTypes.URL.name -> holder.icon?.setImageResource(R.drawable.link_icon)
