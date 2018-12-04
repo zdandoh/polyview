@@ -43,11 +43,11 @@ class LoginActivity: Fragment() {
             model.password = password_text
 
             val provider = (activity as MainActivity).getDataProvider()
-            provider.collectData(email_text, password_text) {
+            provider.collectData(email_text, password_text, refreshDataCallback = {}, callback = {
                 fragmentManager?.beginTransaction()
                         ?.replace(R.id.fragment, ClassesActivity())
                         ?.commit()
-            }
+            })
         }
     }
 }

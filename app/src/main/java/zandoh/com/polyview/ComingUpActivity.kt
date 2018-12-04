@@ -96,10 +96,13 @@ class ComingUpActivity: Fragment() {
                     val activity = it.context
                     if(activity is MainActivity) {
                         val model = ViewModelProviders.of(activity).get(PolylearnModel::class.java)
-
                         val assignment = model.tempAssignments[adapterPosition]
-                        val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(assignment.url))
-                        activity.startActivity(browserIntent)
+                        model.webViewUrl = assignment.url
+
+                        activity.supportFragmentManager.beginTransaction()
+                                .addToBackStack(null)
+                                .replace(R.id.fragment, WebViewActivity())
+                                .commit()
                     }
                 }
 

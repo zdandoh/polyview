@@ -39,12 +39,15 @@ class PolyDataProvider {
                 .build()
     }
 
-    fun collectData(username: String, password: String, callback: (()->Unit)) {
+    fun collectData(username: String, password: String, callback: (()->Unit), refreshDataCallback: (() -> Unit)? = null) {
+        val model = ViewModelProviders.of(activity).get(PolylearnModel::class.java)
+        model.resetData()
+
         this.callback = callback
-        polyLogin(username, password)
+        polyLogin(username, password, refreshDataCallback = refreshDataCallback)
     }
 
-    private fun postCredentials(url: String, username: String, password: String, refreshData: Boolean = true, loginCallback: (() -> Unit)? = null) {
+    private fun postCredentials(url: String, username: String, password: String, refreshDataCallback: (() -> Unit)? = null, loginCallback: (() -> Unit)? = null, loginFailCallback: (() -> Unit)? = null) {
         val body = FormBody.Builder()
                 .add("j_username", username)
                 .add("j_password", password)
@@ -68,11 +71,12 @@ class PolyDataProvider {
                 .enqueue(object: Callback {
                     override fun onFailure(call: Call, e: IOException) {
                         Log.d("POLYHTTP", "LOGIN FAIL")
+                        loginFailCallback?.invoke()
                     }
 
                     override fun onResponse(call: Call, response: okhttp3.Response) {
-                        if(refreshData) {
-                            getClassData()
+                        if(refreshDataCallback != null) {
+                            getClassData(refreshDataCallback)
                         }
 
                         if(loginCallback != null) {
@@ -82,7 +86,7 @@ class PolyDataProvider {
                 })
     }
 
-    private fun polyLogin(username: String, password: String, refreshData: Boolean = true, loginCallback: (() -> Unit)? = null) {
+    fun polyLogin(username: String, password: String, refreshDataCallback: (() -> Unit)? = null, loginCallback: (() -> Unit)? = null, loginFailCallback: (() -> Unit)? = null) {
         val first_url = "https://idp.calpoly.edu/idp/profile/cas/login?service=https://myportal.calpoly.edu/Login"
 
         val request = okhttp3.Request.Builder().url(first_url).build()
@@ -91,16 +95,18 @@ class PolyDataProvider {
                 .enqueue(object: Callback {
                     override fun onFailure(call: Call, e: IOException) {
                         Log.d("POLYHTTP", "PRE-LOGIN FAILED")
+                        loginFailCallback?.invoke()
                     }
 
                     override fun onResponse(call: Call, response: okhttp3.Response) {
                         val post_url = response.request().url().toString()
-                        postCredentials(post_url, username, password, refreshData=refreshData, loginCallback = loginCallback)
+                        response.body()?.close()
+                        postCredentials(post_url, username, password, refreshDataCallback=refreshDataCallback, loginCallback = loginCallback, loginFailCallback = loginFailCallback)
                     }
                 })
     }
 
-    private fun getClassData() {
+    private fun getClassData(refreshDataCallback: (() -> Unit)?) {
         val data_url = "https://myportal.calpoly.edu/f/u17l1s6/p/myclasses.u17l1n1696/normal/getCurrentEnrollment.resource.uP"
 
         val request = okhttp3.Request.Builder().url(data_url).build()
@@ -109,6 +115,7 @@ class PolyDataProvider {
                 .enqueue(object: Callback {
                     override fun onFailure(call: Call, e: IOException) {
                         Log.d("POLYHTTP", "CLASS DATA REQUEST FAILED")
+                        refreshDataCallback?.invoke()
                     }
 
                     override fun onResponse(call: Call, response: okhttp3.Response) {
@@ -139,12 +146,12 @@ class PolyDataProvider {
                             classItem.times[0].buildingName = classItem.times[0].buildingName.substring(0, classItem.times[0].buildingName.lastIndexOf(" "))
                         }
 
-                        getPolylearnLinks(classes)
+                        getPolylearnLinks(classes, refreshDataCallback)
                     }
                 })
     }
 
-    private fun getPolylearnLinks(classData: JSONClasses) {
+    private fun getPolylearnLinks(classData: JSONClasses, refreshDataCallback: (() -> Unit)?) {
         val polylearn_url = "https://myportal.calpoly.edu/f/u17l1s6/p/myclasses.u17l1n1696/normal/moodleLinks.resource.uP?terms=2188"
 
         val request = okhttp3.Request.Builder().url(polylearn_url).build()
@@ -153,6 +160,7 @@ class PolyDataProvider {
                 .enqueue(object: Callback {
                     override fun onFailure(call: Call, e: IOException) {
                         Log.d("POLYHTTP", "FAILED TO GET CLASS URLS")
+                        refreshDataCallback?.invoke()
                     }
 
                     override fun onResponse(call: Call, response: okhttp3.Response) {
@@ -186,7 +194,7 @@ class PolyDataProvider {
                         }
 
                         model.assignments.items.clear()
-                        getPolylearnData(urlSet)
+                        getPolylearnData(urlSet, refreshDataCallback)
                     }
                 })
     }
@@ -195,8 +203,9 @@ class PolyDataProvider {
 
     }
 
-    fun getPolylearnData(urls: HashSet<String>) {
+    private fun getPolylearnData(urls: HashSet<String>, refreshDataCallback: (() -> Unit)?) {
         if(urls.isEmpty()) {
+            refreshDataCallback?.invoke()
             return
         }
 
@@ -209,6 +218,7 @@ class PolyDataProvider {
                     override fun onFailure(call: Call, e: IOException) {
                         Log.d("POLYHTTP", "FAILED TO GET POLYLEARN DATA")
                         Log.d("POLYHTTP", e.message)
+                        refreshDataCallback?.invoke()
                     }
 
                     override fun onResponse(call: Call, response: okhttp3.Response) {
@@ -222,12 +232,12 @@ class PolyDataProvider {
                         val prefs = activity.getPreferences(MODE_PRIVATE).edit()
                         model.writePolylearnData(url, data, prefs)
 
-                        getPolylearnData(urls)
+                        getPolylearnData(urls, refreshDataCallback)
                     }
                 })
     }
 
-    fun getAssignments(data: PolylearnData) {
+    private fun getAssignments(data: PolylearnData) {
         for(cat in data.categories) {
             for(item in cat.items) {
                 if(item.type == FileTypes.ASSIGNMENT.name) {
@@ -237,7 +247,7 @@ class PolyDataProvider {
         }
     }
 
-    fun getAssignment(item: PolylearnItem) {
+    private fun getAssignment(item: PolylearnItem) {
         val request = okhttp3.Request.Builder().url(item.url).build()
 
         client.newCall(request)
@@ -262,7 +272,7 @@ class PolyDataProvider {
                 })
     }
 
-    fun parseAssignmentInfo(item: PolylearnItem, source: String): PolyAssignment? {
+    private fun parseAssignmentInfo(item: PolylearnItem, source: String): PolyAssignment? {
         var pattern = Pattern.compile("Due date<\\/td>\\n<td.+>(.+)<\\/td>")
         var matcher = pattern.matcher(source)
         matcher.find()
@@ -296,9 +306,22 @@ class PolyDataProvider {
     }
 
     fun openActualUrl(url: String, username: String, password: String, finishCallback: () -> Unit) {
+        var newUrl = url
 
-        polyLogin(username, password, refreshData = false, loginCallback = {
-            openPLUrl(url, finishCallback)
+        polyLogin(username, password, loginCallback = {
+            if(url.contains("polylearn.calpoly.edu")) {
+                newUrl += "&redirect=1"
+            }
+
+            activity.runOnUiThread(finishCallback)
+
+            val model = ViewModelProviders.of(activity).get(PolylearnModel::class.java)
+            model.webViewUrl = newUrl
+
+            activity.supportFragmentManager.beginTransaction()
+                    .addToBackStack(null)
+                    .replace(R.id.fragment, WebViewActivity())
+                    .commit()
         })
     }
 
@@ -310,6 +333,7 @@ class PolyDataProvider {
                 .enqueue(object: Callback {
                     override fun onFailure(call: Call, e: IOException) {
                         Log.d("POLYHTTP", "FAILED TO GET POLYLEARN URL")
+                        Log.d("POLYHTTP", e.message)
                         activity.runOnUiThread(finishCallback)
                         activity.runOnUiThread {
                             Toast.makeText(activity, "Failed to access resource", Toast.LENGTH_LONG).show()

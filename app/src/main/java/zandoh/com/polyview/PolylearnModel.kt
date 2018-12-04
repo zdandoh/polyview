@@ -14,6 +14,15 @@ class PolylearnModel: ViewModel() {
     var plDisplayClass = -1
     var username: String? = null
     var password: String? = null
+    var loading: Boolean = false
+    var webViewUrl: String? = null
+
+    fun resetData() {
+        classes = null
+        polylearnData = PolylearnDataHolder()
+        assignments = PolyAssignmentHolder()
+        tempAssignments = arrayListOf()
+    }
 
     fun writeClasses(newClasses: JSONClasses, prefs: SharedPreferences.Editor) {
         this.classes = newClasses

@@ -1,5 +1,6 @@
 package zandoh.com.polyview
 
+import android.Manifest
 import android.content.Context
 import android.os.Bundle
 import android.support.design.widget.NavigationView
@@ -18,6 +19,13 @@ import android.support.v4.widget.DrawerLayout
 import android.util.Log
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.Manifest.permission
+import android.Manifest.permission.READ_PHONE_STATE
+import android.support.v4.app.ActivityCompat
+import android.content.pm.PackageManager
+import android.support.v4.content.ContextCompat
+
+
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -27,6 +35,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
+
+        checkPermissions()
 
         val toggle = ActionBarDrawerToggle(
                 this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
@@ -40,10 +50,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         startDataUpdater()
 
-        val spinAnim = AnimationUtils.loadAnimation(this, R.anim.spin_anim)
-        refresh_button.startAnimation(spinAnim)
         refresh_button.setOnClickListener {
-            refresh_button.clearAnimation()
+            if(model.username == null) {
+                return@setOnClickListener
+            }
+            val spinAnim = AnimationUtils.loadAnimation(this, R.anim.spin_anim)
+            refresh_button.startAnimation(spinAnim)
+            model.loading = true
+            getDataProvider().collectData(model.username!!, model.password!!, refreshDataCallback = {
+                refresh_button.clearAnimation()
+            }, callback = {})
         }
 
         val launchFrag: Fragment
@@ -57,6 +73,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment, launchFrag)
                 .commit()
+    }
+
+    fun checkPermissions() {
+        val permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+
+        if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 1)
+        }
     }
 
     fun getDataProvider(): PolyDataProvider {

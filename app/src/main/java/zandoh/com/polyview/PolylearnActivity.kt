@@ -133,9 +133,10 @@ class PolylearnActivity: Fragment() {
 
                     val activity = itemView.context as MainActivity
 
+                    progressBar!!.visibility = View.VISIBLE
+                    icon!!.visibility = View.INVISIBLE
+
                     if(item.type == FileTypes.FILE.name || item.type == FileTypes.URL.name) {
-                        progressBar!!.visibility = View.VISIBLE
-                        icon!!.visibility = View.INVISIBLE
 
                         activity.getDataProvider().openActualUrl(item.url, model.username!!, model.password!!) {
                             progressBar!!.visibility = View.INVISIBLE
@@ -143,8 +144,20 @@ class PolylearnActivity: Fragment() {
                         }
                     }
                     else {
-                        val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(item.url))
-                        activity.startActivity(browserIntent)
+                        val provider = activity.getDataProvider()
+                        provider.polyLogin(model.username!!, model.password!!, loginCallback = {
+
+                            activity.runOnUiThread {
+                                progressBar!!.visibility = View.INVISIBLE
+                                icon!!.visibility = View.VISIBLE
+                            }
+                            model.webViewUrl = item.url
+
+                            activity.supportFragmentManager.beginTransaction()
+                                    .addToBackStack(null)
+                                    .replace(R.id.fragment, WebViewActivity())
+                                    .commit()
+                        })
                     }
                 }
 
