@@ -24,8 +24,13 @@ import android.Manifest.permission.READ_PHONE_STATE
 import android.support.v4.app.ActivityCompat
 import android.content.pm.PackageManager
 import android.support.v4.content.ContextCompat
-
-
+import android.widget.LinearLayout
+import android.widget.TextView
+import kotlinx.android.synthetic.main.abc_dialog_title_material.view.*
+import kotlinx.android.synthetic.main.activity_classes.*
+import kotlinx.android.synthetic.main.activity_comingup.*
+import kotlinx.android.synthetic.main.activity_polylearn.*
+import kotlinx.android.synthetic.main.nav_header_main.*
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -48,7 +53,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val model = ViewModelProviders.of(this).get(PolylearnModel::class.java)
         model.load(getPreferences(Context.MODE_PRIVATE))
 
-        startDataUpdater()
+        val navHeader = nav_view.getHeaderView(0) as LinearLayout
+        val displayNameTextView = navHeader.findViewById<TextView>(R.id.display_name)
+        displayNameTextView.text = model.getUsernameAsEmail()
+
+        model.polylearnData.items.forEach {
+            addPLToSidebar(this, model, it.key)
+        }
 
         refresh_button.setOnClickListener {
             if(model.username == null) {
@@ -59,12 +70,19 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             model.loading = true
             getDataProvider().collectData(model.username!!, model.password!!, refreshDataCallback = {
                 refresh_button.clearAnimation()
+
+                // refresh recylcerviews
+                this.runOnUiThread {
+                    polylearn_list?.adapter = PolylearnActivity.PolylearnAdapter(getPolyData(model)!!)
+                    classes_list?.adapter = ClassesActivity.ClassesAdapter(model.classes!!.items)
+                }
             }, callback = {})
         }
 
         val launchFrag: Fragment
         if(model.classes == null) {
             launchFrag = LoginActivity()
+            drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
         }
         else {
             launchFrag = ClassesActivity()
@@ -136,13 +154,18 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_comingup -> {
                 newFragment = ComingUpActivity()
             }
-            R.id.nav_map -> {
+            else -> {
+                // This is a dynamically added polylearn
+                val model = ViewModelProviders.of(this).get(PolylearnModel::class.java)
+                val classItemPosition = model.classes!!.items.indexOfFirst { it.name == item.title }
+                model.plDisplayClass = classItemPosition
 
+                newFragment = PolylearnActivity()
             }
         }
 
         supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment, newFragment!!)
+                .replace(R.id.fragment, newFragment)
                 .commit()
 
         drawer_layout.closeDrawer(GravityCompat.START)

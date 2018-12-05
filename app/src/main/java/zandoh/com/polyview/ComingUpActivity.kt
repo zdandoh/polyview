@@ -53,6 +53,8 @@ class ComingUpActivity: Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        activity!!.title = "Coming Up"
+
         val model = ViewModelProviders.of(activity!!).get(PolylearnModel::class.java)
         model.tempAssignments = model.assignments.items.filter { it.due > System.currentTimeMillis() / 1000 } as ArrayList<PolyAssignment>
 
@@ -96,6 +98,11 @@ class ComingUpActivity: Fragment() {
                     val activity = it.context
                     if(activity is MainActivity) {
                         val model = ViewModelProviders.of(activity).get(PolylearnModel::class.java)
+
+                        if(adapterPosition >= model.tempAssignments.size) {
+                            Toast.makeText(activity, "Wait: collecting data", Toast.LENGTH_LONG).show()
+                            return@setOnClickListener
+                        }
                         val assignment = model.tempAssignments[adapterPosition]
                         model.webViewUrl = assignment.url
 

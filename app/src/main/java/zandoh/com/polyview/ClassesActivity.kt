@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.*
 import android.widget.TextView
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_classes.*
 
 class ClassesActivity : Fragment() {
@@ -19,6 +20,8 @@ class ClassesActivity : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        activity!!.title = "Classes"
 
         val model = ViewModelProviders.of(activity!!).get(PolylearnModel::class.java)
 
@@ -52,6 +55,11 @@ class ClassesActivity : Fragment() {
                     if(activity is MainActivity) {
                         val model = ViewModelProviders.of(activity).get(PolylearnModel::class.java)
                         model.plDisplayClass = adapterPosition
+
+                        if(getPolyData(model) == null) {
+                            Toast.makeText(activity, "Wait: collecting data", Toast.LENGTH_LONG).show()
+                            return@setOnClickListener
+                        }
 
                         activity.supportFragmentManager.beginTransaction()
                                 .replace(R.id.fragment, PolylearnActivity())

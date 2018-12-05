@@ -28,8 +28,5 @@
             android:title="Map"
             android:visible="false" />
     </group>
-    <group android:id="@+id/group2">
-        <item android:title="Polylearn" />
-    </group>
 
 </menu>

@@ -1,14 +1,17 @@
 package zandoh.com.polyview;
 
+import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.Intent
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Handler
 import android.os.Looper
 import android.os.Parcelable
 import android.support.v4.app.Fragment
+import android.support.v7.widget.DrawableUtils
 import android.util.Log
 import android.widget.Toast
 import com.franmontiel.persistentcookiejar.PersistentCookieJar
@@ -18,12 +21,30 @@ import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
 import java.io.IOException
 import kotlinx.android.parcel.Parcelize
+import kotlinx.android.synthetic.main.activity_main.*
 import okhttp3.*
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.regex.Pattern
 import kotlin.collections.ArrayList
 
+
+val SIDEBAR_PL_GROUP_ID = 5
+
+fun addPLToSidebar(activity: MainActivity, model: PolylearnModel, url: String) {
+    val relatedClassIndex = model.classes?.items?.indexOfFirst { it.polylearnUrl == url }
+    if(relatedClassIndex == -1 || relatedClassIndex == null) {
+        return
+    }
+    val relatedClass = model.classes?.items?.get(relatedClassIndex)
+
+    if(relatedClass != null) {
+        activity.runOnUiThread {
+            val newSidebarItem = activity.nav_view.menu.add(SIDEBAR_PL_GROUP_ID, relatedClassIndex, relatedClassIndex, relatedClass.name)
+            newSidebarItem.setIcon(R.drawable.pl_sidebar_icon)
+        }
+    }
+}
 
 class PolyDataProvider {
     var client: OkHttpClient
@@ -42,6 +63,7 @@ class PolyDataProvider {
     fun collectData(username: String, password: String, callback: (()->Unit), refreshDataCallback: (() -> Unit)? = null) {
         val model = ViewModelProviders.of(activity).get(PolylearnModel::class.java)
         model.resetData()
+        activity.nav_view.menu.removeGroup(SIDEBAR_PL_GROUP_ID)
 
         this.callback = callback
         polyLogin(username, password, refreshDataCallback = refreshDataCallback)
@@ -152,7 +174,7 @@ class PolyDataProvider {
     }
 
     private fun getPolylearnLinks(classData: JSONClasses, refreshDataCallback: (() -> Unit)?) {
-        val polylearn_url = "https://myportal.calpoly.edu/f/u17l1s6/p/myclasses.u17l1n1696/normal/moodleLinks.resource.uP?terms=2188"
+        val polylearn_url = "https://myportal.calpoly.edu/f/u17l1s6/p/myclasses.u17l1n1696/normal/moodleLinks.resource.uP?terms=" + classData.term.code
 
         val request = okhttp3.Request.Builder().url(polylearn_url).build()
 
@@ -232,6 +254,8 @@ class PolyDataProvider {
                         val prefs = activity.getPreferences(MODE_PRIVATE).edit()
                         model.writePolylearnData(url, data, prefs)
 
+                        addPLToSidebar(activity, model, url)
+
                         getPolylearnData(urls, refreshDataCallback)
                     }
                 })
@@ -267,7 +291,7 @@ class PolyDataProvider {
 
                         val model = ViewModelProviders.of(activity).get(PolylearnModel::class.java)
                         val prefs = activity.getPreferences(MODE_PRIVATE).edit()
-                        model.writeAssignment(newAssignment, prefs)
+                        model.writeAssignment(newAssignment, prefs, activity)
                     }
                 })
     }

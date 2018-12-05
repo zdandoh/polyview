@@ -20,6 +20,7 @@ import kotlinx.android.synthetic.main.calendar_cell.view.*
 import kotlinx.android.synthetic.main.calendar_row.view.*
 import kotlinx.android.synthetic.main.content_main.*
 import android.widget.LinearLayout
+import android.widget.Toast
 import org.w3c.dom.Text
 
 
@@ -90,6 +91,8 @@ class CalendarActivity: Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        activity!!.title = "Calendar"
+
         val model = ViewModelProviders.of(activity!!).get(PolylearnModel::class.java)
 
         for(i in 1..16) {
@@ -126,8 +129,11 @@ class CalendarActivity: Fragment() {
                     val cellView = getCalendarTextView(day, currTime)
 
                     cellView.setOnClickListener {
-                        val model = ViewModelProviders.of(activity!!).get(PolylearnModel::class.java)
                         model.plDisplayClass = index
+                        if(getPolyData(model) == null) {
+                            Toast.makeText(activity, "Wait: collecting data", Toast.LENGTH_LONG).show()
+                            return@setOnClickListener
+                        }
 
                         fragmentManager?.beginTransaction()
                                 ?.replace(R.id.fragment, PolylearnActivity())

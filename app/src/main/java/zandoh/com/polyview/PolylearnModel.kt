@@ -4,6 +4,7 @@ import android.arch.lifecycle.ViewModel
 import android.content.SharedPreferences
 import android.os.Parcel
 import com.google.gson.Gson
+import kotlinx.android.synthetic.main.activity_comingup.*
 import java.net.URL
 
 class PolylearnModel: ViewModel() {
@@ -61,12 +62,28 @@ class PolylearnModel: ViewModel() {
         prefs.apply()
     }
 
-    fun writeAssignment(assignment: PolyAssignment, prefs: SharedPreferences.Editor) {
+    fun writeAssignment(assignment: PolyAssignment, prefs: SharedPreferences.Editor, activity: MainActivity) {
         assignments.items.add(assignment)
         assignments.items.sortBy { it.due }
 
         val dataStr = Gson().toJson(assignments)
         prefs.putString("assignments", dataStr)
         prefs.apply()
+
+        activity.runOnUiThread {
+            activity.comingup_list?.adapter = ComingUpActivity.AssignmentAdapter(tempAssignments)
+        }
+    }
+
+    fun getUsernameAsEmail(): String {
+        if(username == null) {
+            return "unknown@calpoly.edu"
+        }
+
+        if(username!!.endsWith("@calpoly.edu")) {
+            return username!!
+        }
+
+        return username + "@calpoly.edu"
     }
 }

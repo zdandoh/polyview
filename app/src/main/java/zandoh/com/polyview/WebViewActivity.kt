@@ -25,8 +25,10 @@ class WebViewActivity: Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        val model = ViewModelProviders.of(activity as MainActivity).get(PolylearnModel::class.java)
+
         val provider = (activity as MainActivity).getDataProvider()
-        val cookies = provider.client.cookieJar().loadForRequest(HttpUrl.get("https://myportal.calpoly.edu"))
+        val cookies = provider.client.cookieJar().loadForRequest(HttpUrl.get(model.webViewUrl!!))
 
         val manager = CookieManager.getInstance()
         manager.setAcceptCookie(true)
@@ -54,8 +56,6 @@ class WebViewActivity: Fragment() {
             dm!!.enqueue(request)
             Toast.makeText(context, "Downloading $fileName", Toast.LENGTH_LONG).show()
         }
-
-        val model = ViewModelProviders.of(activity as MainActivity).get(PolylearnModel::class.java)
 
         browser_view.loadUrl(model.webViewUrl)
     }

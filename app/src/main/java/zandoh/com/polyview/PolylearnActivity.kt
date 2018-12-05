@@ -29,11 +29,11 @@ enum class FileTypes {
     QUIZ,
 }
 
-fun getPolyData(model: PolylearnModel): PolylearnData {
+fun getPolyData(model: PolylearnModel): PolylearnData? {
     val classData = model.classes!!.items.get(model.plDisplayClass)
     val polyData = model.polylearnData.items.get(classData.polylearnUrl)
 
-    return polyData!!
+    return polyData
 }
 
 class PolylearnActivity: Fragment() {
@@ -43,6 +43,8 @@ class PolylearnActivity: Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        activity!!.title = "Polylearn"
 
         val model = ViewModelProviders.of(activity!!).get(PolylearnModel::class.java)
 
@@ -129,7 +131,7 @@ class PolylearnActivity: Fragment() {
                     val model = ViewModelProviders.of(it.context as MainActivity).get(PolylearnModel::class.java)
 
                     val polyData = getPolyData(model)
-                    val item = polyData.get(adapterPosition) as PolylearnItem
+                    val item = polyData!!.get(adapterPosition) as PolylearnItem
 
                     val activity = itemView.context as MainActivity
 
