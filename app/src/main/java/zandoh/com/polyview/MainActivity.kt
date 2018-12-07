@@ -53,9 +53,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val model = ViewModelProviders.of(this).get(PolylearnModel::class.java)
         model.load(getPreferences(Context.MODE_PRIVATE))
 
-        val navHeader = nav_view.getHeaderView(0) as LinearLayout
-        val displayNameTextView = navHeader.findViewById<TextView>(R.id.display_name)
-        displayNameTextView.text = model.getUsernameAsEmail()
+        setNameHeader(model)
 
         model.polylearnData.items.forEach {
             addPLToSidebar(this, model, it.key)
@@ -91,6 +89,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment, launchFrag)
                 .commit()
+    }
+
+    fun setNameHeader(model: PolylearnModel) {
+        val navHeader = nav_view.getHeaderView(0) as LinearLayout
+        val displayNameTextView = navHeader.findViewById<TextView>(R.id.display_name)
+        displayNameTextView.text = model.getUsernameAsEmail()
     }
 
     fun checkPermissions() {

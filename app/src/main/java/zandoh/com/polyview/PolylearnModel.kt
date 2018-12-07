@@ -70,8 +70,12 @@ class PolylearnModel: ViewModel() {
         prefs.putString("assignments", dataStr)
         prefs.apply()
 
-        activity.runOnUiThread {
-            activity.comingup_list?.adapter = ComingUpActivity.AssignmentAdapter(tempAssignments)
+        if(activity.comingup_list != null) {
+            activity.runOnUiThread {
+                activity.supportFragmentManager?.beginTransaction()
+                        ?.replace(R.id.fragment, ComingUpActivity())
+                        ?.commit()
+            }
         }
     }
 

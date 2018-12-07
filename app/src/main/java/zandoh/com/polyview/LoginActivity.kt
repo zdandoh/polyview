@@ -47,6 +47,7 @@ class LoginActivity: Fragment() {
             val provider = (activity as MainActivity).getDataProvider()
             provider.collectData(email_text, password_text, refreshDataCallback = {}, callback = {
                 activity!!.drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+                (activity as MainActivity).setNameHeader(model)
 
                 fragmentManager?.beginTransaction()
                         ?.replace(R.id.fragment, ClassesActivity())
