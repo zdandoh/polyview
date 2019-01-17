@@ -8,7 +8,7 @@ import kotlinx.android.synthetic.main.activity_comingup.*
 import java.net.URL
 
 class PolylearnModel: ViewModel() {
-    var classes: JSONClasses? = null
+    var classes: JSONClasses? = JSONClasses(ArrayList<JSONClass>(), Term("-1"))
     var polylearnData: PolylearnDataHolder = PolylearnDataHolder()
     var assignments: PolyAssignmentHolder = PolyAssignmentHolder()
     var tempAssignments: ArrayList<PolyAssignment> = arrayListOf()
